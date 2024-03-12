@@ -1,0 +1,5 @@
+config SHIELD_CYBOARD_DACTYL_SINGLE_ARC_NUMBER_ROW_LEFT
+    def_bool $(shields_list_contains,cyboard_dactyl_single_arc_number_row_left)
+
+config SHIELD_CYBOARD_DACTYL_SINGLE_ARC_NUMBER_ROW_RIGHT
+    def_bool $(shields_list_contains,cyboard_dactyl_single_arc_number_row_right)
