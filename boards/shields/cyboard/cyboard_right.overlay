@@ -1,4 +1,4 @@
-#include "cyboard_dactyl_single_arc_number_row.dtsi"
+#include "cyboard.dtsi"
 
 &default_transform { // The matrix transform for this board is 7 rows down because the left half is 7 rows tall according to the matrix.
     row-offset = <7>;

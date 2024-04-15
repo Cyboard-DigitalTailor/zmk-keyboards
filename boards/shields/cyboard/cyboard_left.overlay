@@ -1,4 +1,4 @@
-#include "cyboard_dactyl_single_arc_number_row.dtsi"
+#include "cyboard.dtsi"
 
 &kscan0 {
     row-gpios
