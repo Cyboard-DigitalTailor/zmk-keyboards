@@ -19,6 +19,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: cyboard_dactyl_single_arc_number_row_left
+    shield: cyboard_left
   - board: nice_nano_v2
-    shield: cyboard_dactyl_single_arc_number_row_right
+    shield: cyboard_right
