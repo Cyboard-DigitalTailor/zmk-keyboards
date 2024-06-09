@@ -4,6 +4,10 @@
     row-offset = <7>;
 };
 
+&dactyl_manuform_number_row {
+    row-offset = <7>;
+};
+
 &kscan0 {
     row-gpios
         = <&pro_micro 8 GPIO_ACTIVE_HIGH> // row0 from schematic
