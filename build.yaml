@@ -19,3 +19,4 @@
 ---
 include:
   - board: cyboard
+    shield: cyboard_left
