@@ -16,7 +16,7 @@
  &kp LSHFT  &kp Z     &kp X     &kp C     &kp V   &kp B                                          &kp N       &kp M      &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
                       &kp LGUI  &kp LALT                                                                                &kp LBKT  &kp RBKT
                                                   &kp RET &kp DEL  &kp ESC    &kp GRAVE &kp BSPC &kp SPACE
-                                                  &mo 1   &kp HOME &kp END    &kp CAPS &kp K_APP &mo 2
+                                                  &rgb_ug RGB_ON  &ext_power EP_ON &ext_power EP_OFF    &kp CAPS &kp K_APP &mo 2
             >;
         };
 
