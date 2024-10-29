@@ -17,4 +17,4 @@ endif
 
 config ZMK_RGB_UNDERGLOW
     default y
-    inply WS2812_STRIP
+    imply WS2812_STRIP
