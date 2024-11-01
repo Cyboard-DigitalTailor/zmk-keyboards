@@ -18,9 +18,3 @@ endif
 config ZMK_RGB_UNDERGLOW
     default y
     imply WS2812_STRIP
-
-config ZMK_MAX17048
-	default y
-
-config I2C
-	default y
