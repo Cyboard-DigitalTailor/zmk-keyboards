@@ -22,8 +22,5 @@ config ZMK_RGB_UNDERGLOW
 config ZMK_MAX17048
 	default y
 
-CONFIG_ZMK_BATTERY_NRF_VDDH
-    default n
-
 config I2C
 	default y
