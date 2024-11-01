@@ -65,7 +65,7 @@
     };
 };
 
-vbatt: vbatt {
+&vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
     };
 
