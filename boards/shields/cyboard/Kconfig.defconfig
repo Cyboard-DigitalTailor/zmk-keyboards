@@ -15,9 +15,6 @@ config ZMK_SPLIT
 
 endif
 
-config MAX17048
-    default y
-
 config ZMK_RGB_UNDERGLOW
     default y
     imply WS2812_STRIP
