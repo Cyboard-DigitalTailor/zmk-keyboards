@@ -65,10 +65,6 @@
     };
 };
 
-&vbatt: vbatt {
-        compatible = "zmk,battery-nrf-vddh";
-    };
-
 &spi1 {
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi1_default>;
@@ -109,6 +105,10 @@ zephyr_udc0: &usbd {
          */
         storage_partition: partition@ec000 {
             reg = <0x000ec000 0x00008000>;
+        };
+
+        vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
         };
 
         boot_partition: partition@f4000 {
