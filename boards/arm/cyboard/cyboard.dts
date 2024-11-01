@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+/dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "cyboard-pinctrl.dtsi"
 
