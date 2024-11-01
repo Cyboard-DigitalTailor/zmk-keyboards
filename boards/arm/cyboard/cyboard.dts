@@ -6,6 +6,7 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
+#include <zephyr/dts/common.dtsi>
 #include "cyboard-pinctrl.dtsi"
 
 / {
