@@ -21,3 +21,6 @@ config ZMK_RGB_UNDERGLOW
 
 config ZMK_MAX17048
 	default y
+
+config I2C
+	default y
