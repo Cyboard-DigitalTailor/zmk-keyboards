@@ -111,6 +111,10 @@ zephyr_udc0: &usbd {
             reg = <0x000ec000 0x00008000>;
         };
 
+        vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
+        };
+
         boot_partition: partition@f4000 {
             reg = <0x000f4000 0x0000c000>;
         };
