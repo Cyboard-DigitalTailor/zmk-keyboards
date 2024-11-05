@@ -18,9 +18,7 @@
 #
 ---
 include:
-  # - board: cyboard
-  #   shield: cyboard_left
-  # - board: cyboard
-  #   shield: cyboard_right
-  board: nice_nano_v2
-  shield: settings_reset
+  - board: cyboard
+    shield: cyboard_left
+  - board: cyboard
+    shield: cyboard_right
