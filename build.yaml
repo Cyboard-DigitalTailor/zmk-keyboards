@@ -22,5 +22,3 @@ include:
     shield: cyboard_left
   - board: cyboard
     shield: cyboard_right
-  - board: cyboard
-    shield: settings_reset
