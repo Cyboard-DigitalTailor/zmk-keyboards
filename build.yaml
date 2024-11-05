@@ -20,3 +20,5 @@
 include:
   - board: cyboard
     shield: cyboard_left
+  - board: cyboard
+    shield: cyboard_right
