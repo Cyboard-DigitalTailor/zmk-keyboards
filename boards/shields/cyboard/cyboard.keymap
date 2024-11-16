@@ -15,7 +15,7 @@
  &kp TAB    &rgb_ug RGB_HUI  &rgb_ug RGB_SAD  &rgb_ug RGB_BRI     &kp R   &kp T                                          &kp Y       &kp U      &kp I     &kp O    &kp P    &kp BSLH
  &kp LCTRL  &kp A     &kp S     &kp D     &kp F   &kp G                                          &kp H       &kp J      &kp K     &kp L    &kp SEMI &kp SQT
  &kp LSHFT  &kp Z     &kp X     &kp C     &kp V   &kp B                                          &kp N       &kp M      &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                      &kp LGUI  &kp LALT                                                                                &kp LBKT  &kp RBKT
+                      &bt BT_CLR  &bt BT_SEL 0                                                                                &kp LBKT  &kp RBKT
                                                   &kp RET &kp DEL  &kp ESC    &kp GRAVE &kp BSPC &kp SPACE
                                                   &rgb_ug RGB_ON  &ext_power EP_ON &ext_power EP_OFF    &kp CAPS &kp K_APP &mo 2
             >;
