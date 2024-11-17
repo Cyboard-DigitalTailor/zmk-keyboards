@@ -6,7 +6,6 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
-#include "cyboard-pinctrl.dtsi"
 
 / {
     model = "cyboard";
@@ -53,13 +52,6 @@
 
 &gpio1 {
     status = "okay";
-};
-
-&spi1 {
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi1_default>;
-    pinctrl-1 = <&spi1_sleep>;
-    pinctrl-names = "default", "sleep";
 };
 
 zephyr_udc0: &usbd {
