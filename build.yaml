@@ -18,7 +18,7 @@
 #
 ---
 include:
-  - board: nice_nano_v2
-    shield: corne_left
-  - board: nice_nano_v2
-    shield: corne_right
+  - board: cyboard
+    shield: cyboard_left
+  - board: cyboard
+    shield: cyboard_right
