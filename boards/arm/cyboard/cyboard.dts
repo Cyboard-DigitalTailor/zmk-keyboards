@@ -16,7 +16,7 @@
         zephyr,code-partition = &code_partition;
         zephyr,sram = &sram0;
         zephyr,flash = &flash0;
-        zmk,battery = &fuel_gauge;
+        zmk,battery = &vbatt;
     };
 
     leds {
@@ -53,21 +53,6 @@
 
 &gpio1 {
     status = "okay";
-};
-
-&i2c0 {
-    status = "okay";
-    compatible = "nordic,nrf-twim";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
-    clock-frequency = <100000>;
-
-    fuel_gauge: max17048@36 {
-        compatible = "zmk,maxim-max17048";
-		reg = <0x36>;
-        status = "okay";
-    };
 };
 
 &spi1 {
