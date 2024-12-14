@@ -29,8 +29,7 @@
     // Node name must match original "EXT_POWER" label to preserve user settings.
     EXT_POWER {
         compatible = "zmk,ext-power-generic";
-        //control-gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
-        control-gpios = <&gpio0 7 GPIO_ACTIVE_HIGH>;//temporary bodge due to missing trace on v1.0 pcb
+        control-gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
         init-delay-ms = <50>;
     };
 
