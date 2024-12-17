@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: MIT
+
+if BOARD_SPELLER
+
+config BOARD
+    default "speller"
+
+if USB_DEVICE_STACK
+
+config USB_NRFX
+    default y
+
+endif # USB_DEVICE_STACK
+
+config BT_CTLR
+    default BT
+
+config ZMK_KEYBOARD_NAME
+    default "Speller"
+
+config ZMK_RGB_UNDERGLOW
+    default y
+    imply WS2812_STRIP
+
+endif # BOARD_SPELLER
