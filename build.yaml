@@ -18,9 +18,5 @@
 #
 ---
 include:
-  - board: cyboard
-    shield: cyboard_left
-    snippet: zmk-usb-logging
-  - board: cyboard
-    shield: cyboard_right
+  - board: speller
     snippet: zmk-usb-logging
