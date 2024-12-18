@@ -1,12 +1,17 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include "speller-layouts.dtsi"
+
+&physical_layout0 {
+    transform = <&matrix_transform0>;
+};
 
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,physical-layout = &physical_layout0;
     };
 
-    default_transform: keymap_transform_0 {
+    matrix_transform0: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <6>;
         rows = <6>;
