@@ -21,6 +21,5 @@ config ZMK_KEYBOARD_NAME
 config ZMK_RGB_UNDERGLOW
     default y
     imply WS2812_STRIP
-    imply CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX=50
 
 endif # BOARD_SPELLER
