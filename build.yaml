@@ -20,3 +20,5 @@
 include:
   - board: speller
     snippet: zmk-usb-logging
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
