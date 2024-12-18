@@ -7,6 +7,7 @@
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
 #include "speller-pinctrl.dtsi"
+#include "speller.dtsi"
 #include <dt-bindings/led/led.h>
 
 / {
