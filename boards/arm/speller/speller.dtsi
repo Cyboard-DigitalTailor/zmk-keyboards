@@ -11,7 +11,7 @@
         zmk,physical-layout = &physical_layout0;
     };
 
-    matrix_transform0: keymap_transform_0 {
+    matrix_transform0: matrix_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <6>;
         rows = <6>;
