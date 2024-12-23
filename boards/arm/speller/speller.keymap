@@ -36,8 +36,8 @@
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &rgb_ug RGB_HUI  rgb_ug RGB_SAI  &rgb_ug RGB_BRI rgb_ug RGB_SPI rgb_ug RGB_EFF
- &rgb_ug RGB_TOG  &rgb_ug RGB_HUD  rgb_ug RGB_SAD  &rgb_ug RGB_BRD rgb_ug RGB_SPD rgb_ug RGB_EFR
+ &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF
+ &rgb_ug RGB_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR
             >;
         };
     };
