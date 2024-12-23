@@ -1,5 +1,5 @@
-identifier: cyboard
-name: cyboard
+identifier: assimilator-bt
+name: assimilator-bt
 type: mcu
 arch: arm
 toolchain:

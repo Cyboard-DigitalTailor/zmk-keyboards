@@ -1,4 +1,4 @@
-#include "cyboard.dtsi"
+#include "imprint.dtsi"
 
 &kscan0 {
     row-gpios

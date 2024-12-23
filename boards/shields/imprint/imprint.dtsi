@@ -6,7 +6,7 @@
         zmk,matrix_transform = &imprint_function_row;
     };
 
-    default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the cyboard flex-pcb system
+    default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the imprint flex-pcb system
         compatible = "zmk,matrix-transform";
         columns = <8>;
         rows = <14>;

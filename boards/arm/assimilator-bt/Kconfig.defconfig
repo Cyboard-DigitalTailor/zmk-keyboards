@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: MIT
 
-if BOARD_CYBOARD
+if BOARD_ASSIMILATOR_BT
 
 config BOARD
-    default "cyboard"
+    default "assimilator-bt"
 
 if USB_DEVICE_STACK
 
@@ -15,4 +15,4 @@ endif # USB_DEVICE_STACK
 config BT_CTLR
     default BT
 
-endif # BOARD_CYBOARD
+endif # BOARD_ASSIMILATOR_BT

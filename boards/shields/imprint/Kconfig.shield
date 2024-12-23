@@ -1,0 +1,5 @@
+config SHIELD_IMPRINT_LEFT
+    def_bool $(shields_list_contains,imprint_left)
+
+config SHIELD_IMPRINT_RIGHT
+    def_bool $(shields_list_contains,imprint_right)

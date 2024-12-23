@@ -1,4 +1,4 @@
-#include "cyboard.dtsi"
+#include "imprint.dtsi"
 
 &imprint_function_row { // The matrix transform for this board is 7 rows down because the left half is 7 rows tall according to the matrix.
     row-offset = <7>;

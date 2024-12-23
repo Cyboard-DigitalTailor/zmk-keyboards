@@ -6,11 +6,11 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
-#include "cyboard-pinctrl.dtsi"
+#include "assimilator-bt-pinctrl.dtsi"
 
 / {
-    model = "cyboard";
-    compatible = "cyboard";
+    model = "assimilator-bt";
+    compatible = "assimilator-bt";
 
     chosen {
         zephyr,code-partition = &code_partition;
