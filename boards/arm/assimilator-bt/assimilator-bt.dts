@@ -70,10 +70,25 @@
 };
 
 &spi1 {
+    status = "okay";
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi1_default>;
     pinctrl-1 = <&spi1_sleep>;
     pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
+
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "src,pmw3360";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = <&gpio0 26 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; // an unused, but broken out pin on the assimilator.  our PMW3360 board doesn't break out the Motion pin.
+
+        /*   optional features   */
+        // snipe-layers = <1>;
+        // scroll-layers = <2 3>;
+        // automouse-layer = <4>;
+    };
 };
 
 zephyr_udc0: &usbd {
