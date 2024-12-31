@@ -20,5 +20,5 @@
 include:
   - board: assimilator-bt
     shield: imprint_left
-  - board: assimilator-bt
-    shield: imprint_right
+  # - board: assimilator-bt
+  #   shield: imprint_right
