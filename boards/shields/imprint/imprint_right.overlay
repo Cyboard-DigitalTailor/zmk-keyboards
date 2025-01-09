@@ -1,5 +1,4 @@
 #include "imprint.dtsi"
-#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &imprint_function_row { // The matrix transform for this board is 7 rows down because the left half is 7 rows tall according to the matrix.
     row-offset = <7>;
@@ -21,6 +20,7 @@
         ;
 };
 
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 &spi1 {
     cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
 
