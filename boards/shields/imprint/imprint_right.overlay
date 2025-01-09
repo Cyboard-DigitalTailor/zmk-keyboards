@@ -1,4 +1,5 @@
 #include "imprint.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
 
 &imprint_function_row { // The matrix transform for this board is 7 rows down because the left half is 7 rows tall according to the matrix.
     row-offset = <7>;
@@ -18,4 +19,25 @@
         , <&gpio0 2 GPIO_ACTIVE_HIGH> // row5 from schematic
         , <&gpio0 9 GPIO_ACTIVE_HIGH> // row6 from schematic
         ;
+};
+
+&spi1 {
+    cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
+
+    trackball: trackball@0 {
+        status = "okay";
+        compatible = "pixart,pmw3610";
+        reg = <0>;
+        spi-max-frequency = <2000000>;
+        irq-gpios = <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        cpi = <600>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
+    };
+};
+
+// Overrides for the input-split child node
+&trackball_split {
+    device = <&trackball>;
 };
