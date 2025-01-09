@@ -19,13 +19,13 @@ config ZMK_POINTING
 config SPI
     default y
 
-CONFIG_INPUT=y
+config INPUT
     default y
 
-CONFIG_ZMK_MOUSE=y
+config ZMK_MOUSE
     default y
 
-CONFIG_PMW3610=y
+config PMW3610
     default y
 
 endif
