@@ -16,6 +16,10 @@ config ZMK_POINTING
 config ZMK_SPLIT
     default y
 
+endif
+
+if SHIELD_IMPRINT_RIGHT
+
 config SPI
     default y
 

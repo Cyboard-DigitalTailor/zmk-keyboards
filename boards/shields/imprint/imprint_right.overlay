@@ -24,7 +24,7 @@
 &spi1 {
     cs-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
 
-    trackball_peripheral: trackball_peripheral@0 {
+    trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
@@ -38,6 +38,6 @@
 };
 
 // Overrides for the input-split child node
-&trackball_peripheral_split {
-    device = <&trackball_peripheral>;
+&trackball_split {
+    device = <&trackball>;
 };
