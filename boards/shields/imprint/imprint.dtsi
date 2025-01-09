@@ -113,4 +113,10 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
             ;
 
     };
+/ {
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+    };
+};
 };
