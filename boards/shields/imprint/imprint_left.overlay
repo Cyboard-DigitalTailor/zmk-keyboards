@@ -12,7 +12,7 @@
         ;
 };
 
-&trackball_listener {
+&trackball_peripheral_listener {
     status = "okay";
 };
 

@@ -118,16 +118,16 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         #address-cells = <1>;
         #size-cells = <0>;
 
-        trackball_split: trackball_split@0 {
+        trackball_peripheral_split: trackball_peripheral_split@0 {
             compatible = "zmk,input-split";
             reg = <0>;
         };
     };
 
-    trackball_listener: trackball_listener {
+    trackball_peripheral_listener: trackball_peripheral_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        device = <&trackball_split>;
+        device = <&trackball_peripheral_split>;
     };
 
     trackball_central_listener: trackball_central_listener {
