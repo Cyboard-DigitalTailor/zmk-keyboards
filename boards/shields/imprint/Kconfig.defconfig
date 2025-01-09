@@ -10,13 +10,22 @@ endif
 
 if SHIELD_IMPRINT_LEFT || SHIELD_IMPRINT_RIGHT
 
-config ZMK_POINTING
-    default y
-
 config ZMK_SPLIT
     default y
 
+config ZMK_POINTING
+    default y
+
 config SPI
+    default y
+
+CONFIG_INPUT=y
+    default y
+
+CONFIG_ZMK_MOUSE=y
+    default y
+
+CONFIG_PMW3610=y
     default y
 
 endif
