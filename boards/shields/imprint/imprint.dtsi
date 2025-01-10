@@ -1,4 +1,5 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <input/processors.dtsi>
 
 / {
     chosen {
@@ -128,10 +129,12 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_peripheral_split>;
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
     };
 
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
+        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
     };
 };
