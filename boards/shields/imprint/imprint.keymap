@@ -53,7 +53,7 @@
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &to 0  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans                             &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans                            &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
                  &trans  &trans                                                                     &trans  &trans
                                          &trans  &trans &trans        &trans &trans &trans
