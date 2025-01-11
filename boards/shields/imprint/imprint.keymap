@@ -63,13 +63,19 @@
             >;
         };
     };
+};
 
 //right hand trackball
-    &trackball_peripheral_listener {
-        input-processors = <&zip_temp_layer 3 500>;
-    };
+&trackball_peripheral_listener {
+    input-processors =
+        <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
+        <&zip_temp_layer 3 500>;
+};
 //left hand trackball
-    &trackball_central_listener {
-        input-processors = <&zip_xy_scaler 1 3>, <&zip_xy_to_scroll_mapper>, <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
-    };
+&trackball_central_listener {
+    input-processors = 
+        <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
+        <&zip_xy_scaler 1 3>,
+        <&zip_xy_to_scroll_mapper>,
+        <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>;
 };
