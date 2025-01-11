@@ -131,12 +131,12 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         compatible = "zmk,input-listener";
         status = "disabled";
         device = <&trackball_peripheral_split>;
-        input-processors = <&zip_xy_transform ( INPUT_TRANSFORM_XY_SWAP )>, <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_transform ( INPUT_TRANSFORM_XY_SWAP )>;
     };
 //left hand trackball
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
-        input-processors = <&zip_xy_transform ( INPUT_TRANSFORM_XY_SWAP )>;
+        input-processors = <&zip_xy_transform ( INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT )>, <&zip_xy_scaler 1 5>, <&zip_xy_to_scroll_mapper>;
     };
 };
