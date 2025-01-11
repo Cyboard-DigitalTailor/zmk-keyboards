@@ -116,6 +116,7 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
 
     };
 
+//right hand trackball
     split_inputs {
         #address-cells = <1>;
         #size-cells = <0>;
@@ -132,7 +133,7 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         device = <&trackball_peripheral_split>;
         input-processors = <&zip_xy_transform ( INPUT_TRANSFORM_XY_SWAP )>, <&zip_xy_to_scroll_mapper>;
     };
-
+//left hand trackball
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
