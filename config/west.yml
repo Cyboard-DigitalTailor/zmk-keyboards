@@ -6,8 +6,6 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: badjeff
       url-base: https://github.com/badjeff
-    - name: cyboard
-      url-base: https://github.com/Cyboard-DigitalTailor
   projects:
     - name: zmk
       remote: zmkfirmware
