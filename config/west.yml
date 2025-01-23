@@ -6,13 +6,15 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: Cyboard-DigitalTailor
+      url-base: https://github.com/Cyboard-DigitalTailor
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
+      remote: Cyboard-DigitalTailor
+      revision: startup_optimization
   self:
     path: config
