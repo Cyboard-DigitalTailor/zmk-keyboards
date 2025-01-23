@@ -26,7 +26,7 @@ config PMW3610
     default y
 
 config PMW3610_INIT_POWER_UP_EXTRA_DELAY_MS
-    default 10000
+    default 0
 
 endif
 
