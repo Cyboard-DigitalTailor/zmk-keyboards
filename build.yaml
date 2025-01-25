@@ -20,7 +20,7 @@
 include:
   - board: assimilator-bt
     shield: imprint_left
-    snippet: zmk-usb-logging
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: assimilator-bt
     shield: imprint_right
-    snippet: zmk-usb-logging

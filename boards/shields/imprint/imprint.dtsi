@@ -1,11 +1,16 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include "imprint-layouts.dtsi"
+
+&physical_layout0 {
+    transform = <&imprint_function_row>;
+    kscan = <&kscan0>;
+};
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
-        zmk,matrix_transform = &imprint_function_row;
+        zmk,physical-layout = &physical_layout0;
     };
 
     default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the imprint flex-pcb system
