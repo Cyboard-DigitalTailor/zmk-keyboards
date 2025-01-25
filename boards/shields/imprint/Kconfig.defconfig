@@ -25,9 +25,6 @@ config SPI
 config PMW3610
     default y
 
-config PMW3610_INIT_POWER_UP_EXTRA_DELAY_MS
-    default 0
-
 endif
 
 config ZMK_RGB_UNDERGLOW
