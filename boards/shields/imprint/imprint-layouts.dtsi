@@ -1,7 +1,7 @@
 #include <physical_layouts.dtsi>
 
 / {
-    physical_layout0: physical_layout_0 {
+    physical_layout_imprint_function_row: physical_layout_0 {
         compatible = "zmk,physical-layout";
         display-name = "Imprint Function Row";
 
