@@ -10,7 +10,7 @@
 
 / {
     chosen {
-        zmk,physical-layout = &physical_layout_imprint_function_row;
+        zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row;
     };
 
     default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the imprint flex-pcb system

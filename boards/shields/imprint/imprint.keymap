@@ -8,9 +8,6 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 / {
-    chosen { zmk,matrix-transform = &imprint_function_row_full_bottom_row;
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
