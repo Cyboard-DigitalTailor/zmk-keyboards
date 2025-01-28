@@ -3,8 +3,8 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include "imprint-layouts.dtsi"
 
-&physical_layout_imprint_function_row {
-    transform = <&imprint_function_row>;
+&physical_layout_imprint_function_row_full_bottom_row {
+    transform = <&imprint_function_row_full_bottom_row>;
     kscan = <&kscan0>;
 };
 
