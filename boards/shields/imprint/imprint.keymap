@@ -8,6 +8,9 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 / {
+    chosen { zmk,matrix-transform = &imprint_function_row_full_bottom_row;
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -18,7 +21,7 @@
  &kp TAB    &kp Q     &kp W     &kp E     &kp R   &kp T                                          &kp Y       &kp U      &kp I     &kp O    &kp P    &kp BSLH
  &kp LCTRL  &kp A     &kp S     &kp D     &kp F   &kp G                                          &kp H       &kp J      &kp K     &kp L    &kp SEMI &kp SQT
  &kp LSHFT  &kp Z     &kp X     &kp C     &kp V   &kp B                                          &kp N       &kp M      &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-                      &kp LGUI  &kp LALT                                                                                &kp LBKT  &kp RBKT
+ &trans     &trans    &kp LGUI  &kp LALT  &trans                                                             &trans     &kp LBKT  &kp RBKT &trans   &trans
                                                   &kp RET  &kp DEL &kp ESC    &kp GRAVE &kp BSPC &kp SPACE
                                                   &kp LGUI &mo 1   &mo 2      &kp CAPS  &mo 2    &mo 1
             >;
@@ -31,7 +34,7 @@
  &trans  &trans  &kp N7  &kp N8  &kp N9  &trans                                     &trans  &kp HOME &kp UP   &kp END   &trans  &trans
  &trans  &trans  &kp N4  &kp N5  &kp N6  &trans                                     &trans  &kp LEFT &kp DOWN &kp RIGHT &trans  &trans
  &trans  &trans  &kp N1  &kp N2  &kp N3  &trans                                     &trans  &trans   &trans   &trans    &trans  &trans
-                 &trans  &kp N0                                                                      &trans   &trans
+ &trans  &trans  &trans  &kp N0  &trans                                                     &trans   &trans   &trans    &trans  &trans
                                       &trans  &trans &trans       &trans  &trans &trans
                                       &trans  &trans &trans       &trans  &trans &trans
             >;
@@ -41,10 +44,10 @@
             bindings = <
  &trans      &trans  &trans  &trans  &trans  &trans                                     &trans         &trans           &trans          &trans          &trans          &trans
  &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4           &trans         &rgb_ug RGB_TOG  &rgb_ug RGB_EFF &trans          &trans          &trans
- &sys_reset      &trans  &trans  &trans  &trans  &studio_unlock                             &studio_unlock &rgb_ug RGB_HUI  &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &sys_reset
+ &sys_reset  &trans  &trans  &trans  &trans  &studio_unlock                             &studio_unlock &rgb_ug RGB_HUI  &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_SPI &sys_reset
  &bootloader &trans  &trans  &trans  &trans  &trans                                     &trans         &rgb_ug RGB_HUD  &rgb_ug RGB_SAD &rgb_ug RGB_BRD &rgb_ug RGB_SPD &bootloader
  &trans      &trans  &trans  &trans  &trans  &trans                                     &trans         &trans           &trans          &trans          &trans          &trans
-                 &trans  &trans                                                                                         &trans          &trans
+ &trans      &trans  &trans  &trans  &trans                                                            &trans           &trans          &trans          &trans          &trans
                                          &trans  &trans &trans        &trans &trans &trans
                                          &trans  &trans &trans        &trans &trans &trans
             >;
@@ -57,7 +60,7 @@
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &mkp RCLK  &mkp MCLK  &mkp LCLK  &trans                            &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans                                     &trans  &trans  &trans  &trans  &trans  &trans
-                 &trans  &trans                                                                     &trans  &trans
+ &trans  &trans  &trans  &trans  &trans                                                     &trans  &trans  &trans  &trans  &trans
                                          &trans  &trans &trans        &trans &trans &trans
                                          &trans  &trans &trans        &trans &trans &trans
             >;
