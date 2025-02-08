@@ -13,6 +13,9 @@ if SHIELD_IMPRINT_LEFT || SHIELD_IMPRINT_RIGHT
 config ZMK_SPLIT
     default y
 
+config ZMK_SLEEP
+    default y
+
 config ZMK_POINTING
     default y
 
