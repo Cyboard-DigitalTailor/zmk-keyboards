@@ -31,6 +31,9 @@ config PMW3610
 config PMW3610_SWAP_XY
     default y
 
+config PMW3610_REPORT_INTERVAL_MIN
+    default 8
+
 endif
 
 config ZMK_RGB_UNDERGLOW
