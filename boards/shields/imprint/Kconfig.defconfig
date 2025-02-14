@@ -28,6 +28,9 @@ config SPI
 config PMW3610
     default y
 
+config PMW3610_SWAP_XY
+    default y
+
 endif
 
 config ZMK_RGB_UNDERGLOW
