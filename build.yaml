@@ -18,10 +18,4 @@
 #
 ---
 include:
-  - board: assimilator-bt
-    shield: imprint_left
-  - board: assimilator-bt
-    shield: imprint_right
   - board: speller
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
