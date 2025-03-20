@@ -11,7 +11,7 @@
         default_layer {
             bindings = <
  &kp A      &kp B     &kp C     &kp D     &kp E     &studio_unlock
- &kp F      &kp G     &kp H     &kp I     &kp J     &to 3
+ &kp F      &kp G     &kp H     &kp I     &kp J     &tog 2
  &kp K      &kp L     &kp M     &kp N     &kp O     &tog 1
  &kp P      &kp Q     &kp R     &kp S     &kp T     &kp CAPS
  &kp U      &kp V     &kp W     &kp X     &kp Y     &kp Z
