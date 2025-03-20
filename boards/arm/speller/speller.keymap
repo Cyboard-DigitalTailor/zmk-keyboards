@@ -40,7 +40,6 @@
  &rgb_ug RGB_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR
             >;
         };
-    };
 
         Layer__3 {
             bindings = <
@@ -52,4 +51,5 @@
  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6
             >;
         };
+    };
 };
