@@ -1,6 +1,23 @@
 #include <dt-bindings/led/led.h>
 
 &pinctrl {
+    spi1_default: spi1_default {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 15)>,
+                <NRF_PSEL(SPIM_MISO, 0, 15)>;
+        };
+    };
+
+    spi1_sleep: spi1_sleep {
+        group1 {
+            psels = <NRF_PSEL(SPIM_SCK, 0, 13)>,
+                <NRF_PSEL(SPIM_MOSI, 0, 15)>,
+                <NRF_PSEL(SPIM_MISO, 0, 15)>;
+            low-power-enable;
+        };
+    };
+
     spi3_default: spi3_default {
         group1 {
             psels = <NRF_PSEL(SPIM_MOSI, 0, 8)>;
@@ -13,6 +30,14 @@
             low-power-enable;
         };
     };
+};
+
+&spi1 {
+    status = "okay";
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-1 = <&spi1_sleep>;
+    pinctrl-names = "default", "sleep";
 };
 
 &spi3 {
@@ -32,7 +57,7 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812 */
-        chain-length = <40>; /* arbitrary; change at will */
+        chain-length = <50>; /* arbitrary; change at will */
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
 
