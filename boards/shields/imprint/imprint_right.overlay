@@ -12,6 +12,10 @@
     row-offset = <7>;
 };
 
+&dactyl_single_arc_letters_only {
+    row-offset = <7>;
+};
+
 &kscan0 {
     row-gpios
         = <&gpio1 4 GPIO_ACTIVE_HIGH> // row0 from schematic
