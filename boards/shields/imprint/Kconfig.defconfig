@@ -13,11 +13,14 @@ if SHIELD_IMPRINT_LEFT || SHIELD_IMPRINT_RIGHT
 config ZMK_SPLIT
     default y
 
+config ZMK_SLEEP
+    default y
+
 config ZMK_POINTING
     default y
 
 config ZMK_POINTING_SMOOTH_SCROLLING
-    default y
+    default n
 
 config SPI
     default y
@@ -25,8 +28,32 @@ config SPI
 config PMW3610
     default y
 
+config PMW3610_SWAP_XY
+    default y
+
+config PMW3610_REPORT_INTERVAL_MIN
+    default 8
+
 endif
 
 config ZMK_RGB_UNDERGLOW
     default y
     imply WS2812_STRIP
+
+config ZMK_RGB_UNDERGLOW_ON_START
+    default n
+
+config ZMK_RGB_UNDERGLOW_BRT_MIN
+    default 5
+
+config ZMK_RGB_UNDERGLOW_BRT_MAX
+    default 50
+
+config ZMK_RGB_UNDERGLOW_BRT_START
+    default 25
+
+config ZMK_RGB_UNDERGLOW_BRT_STEP
+    default 5
+
+config ZMK_RGB_UNDERGLOW_HUE_START
+    default 40
