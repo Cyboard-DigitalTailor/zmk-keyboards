@@ -8,7 +8,39 @@
     row-offset = <7>;
 };
 
+&imprint_function_row_no_bottom_row {
+    row-offset = <7>;
+};
+
+&imprint_number_row {
+    row-offset = <7>;
+};
+
+&imprint_number_row_full_bottom_row {
+    row-offset = <7>;
+};
+
+&imprint_number_row_no_bottom_row {
+    row-offset = <7>;
+};
+
+&imprint_letters_only {
+    row-offset = <7>;
+};
+
+&imprint_letters_only_full_bottom_row {
+    row-offset = <7>;
+};
+
+&imprint_letters_only_no_bottom_row {
+    row-offset = <7>;
+};
+
 &dactyl_manuform_number_row {
+    row-offset = <7>;
+};
+
+&dactyl_single_arc_letters_only {
     row-offset = <7>;
 };
 
