@@ -1,0 +1,13 @@
+#include "dactyl.dtsi"
+
+&kscan0 {
+    row-gpios
+        = <&gpio1 4 GPIO_ACTIVE_HIGH> // row0 from schematic
+        , <&gpio0 11 GPIO_ACTIVE_HIGH> // row1 from schematic
+        , <&gpio0 29 GPIO_ACTIVE_HIGH> // row2 from schematic
+        , <&gpio1 0 GPIO_ACTIVE_HIGH> // row3 from schematic
+        , <&gpio0 10 GPIO_ACTIVE_HIGH> // row4 from schematic
+        , <&gpio0 2 GPIO_ACTIVE_HIGH> // row5 from schematic
+        , <&gpio0 9 GPIO_ACTIVE_HIGH> // row6 from schematic
+        ;
+};

@@ -1,0 +1,44 @@
+if SHIELD_DACTYL_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Dactyl"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_DACTYL_LEFT || SHIELD_DACTYL_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SLEEP
+    default y
+
+config SPI
+    default y
+
+endif
+
+config ZMK_RGB_UNDERGLOW
+    default y
+    imply WS2812_STRIP
+
+config ZMK_RGB_UNDERGLOW_ON_START
+    default n
+
+config ZMK_RGB_UNDERGLOW_BRT_MIN
+    default 5
+
+config ZMK_RGB_UNDERGLOW_BRT_MAX
+    default 50
+
+config ZMK_RGB_UNDERGLOW_BRT_START
+    default 25
+
+config ZMK_RGB_UNDERGLOW_BRT_STEP
+    default 5
+
+config ZMK_RGB_UNDERGLOW_HUE_START
+    default 40
