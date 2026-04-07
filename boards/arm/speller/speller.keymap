@@ -28,20 +28,17 @@
             };
         };
         caps-lock = < 23 >; // Caps Lock LED
+        status-key = < 11 >; // Blue pulse on status key
+        num-layer-index = < 1 >; // Numbers layer
+        num-layer-toggle-key = < 12 >; // tog 1 key (pulses)
+        num-layer-keys = < 5 4 3 2 1 6 7 8 9 10 >; // N1-N0 keys (solid)
     };
 
 macros {
-    rgbstatuslayer: rgb_status_layer {
+    togglestatus: toggle_status {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      label = "Layer toggle with RGB_STATUS";
-      bindings
-        = <&macro_press &mo 2>
-        , <&macro_press &rgb_ug RGB_STATUS>
-        , <&macro_pause_for_release>
-        , <&macro_release &mo 2>
-        , <&macro_release &rgb_ug RGB_STATUS>
-        ;
+      bindings = <&tog 2>, <&rgb_ug RGB_STATUS>;
     };
   };
 
@@ -51,7 +48,7 @@ macros {
         Letters {
             bindings = <
  &kp A      &kp B     &kp C     &kp D     &kp E     &studio_unlock
- &kp F      &kp G     &kp H     &kp I     &kp J     &rgbstatuslayer
+ &kp F      &kp G     &kp H     &kp I     &kp J     &togglestatus
  &kp K      &kp L     &kp M     &kp N     &kp O     &tog 1
  &kp P      &kp Q     &kp R     &kp S     &kp T     &kp CAPS
  &kp U      &kp V     &kp W     &kp X     &kp Y     &kp Z
