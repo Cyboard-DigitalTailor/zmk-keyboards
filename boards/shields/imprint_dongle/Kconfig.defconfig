@@ -1,0 +1,27 @@
+if SHIELD_IMPRINT_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "Imprint Dongle"
+
+config ZMK_USB
+    default y
+
+config ZMK_BLE
+    default y
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+
+config ZMK_SLEEP
+    default n
+
+config PMW3610
+    default n
+
+endif
