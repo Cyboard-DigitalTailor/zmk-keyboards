@@ -258,4 +258,14 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         compatible = "zmk,input-listener";
         status = "disabled";
     };
+
+    // Unlock ZMK Studio by holding the A- and F-position keys (left home
+    // row, matrix row 3) for 3 seconds. Matrix coordinates, unlike key
+    // positions, are identical across all Imprint physical layouts, and
+    // this works no matter what the user has done to their keymap.
+    studio_unlock_combo {
+        compatible = "zmk,studio-unlock-combo";
+        keys = <RC(3,4) RC(3,1)>;
+        hold-time-ms = <3000>;
+    };
 };
