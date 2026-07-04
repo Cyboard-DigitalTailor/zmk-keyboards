@@ -5,3 +5,4 @@ config BOARD_ASSIMILATOR_BT
     imply RETAINED_MEM
     imply RETENTION
     imply RETENTION_BOOT_MODE
+    select ZMK_BOARD_COMPAT
