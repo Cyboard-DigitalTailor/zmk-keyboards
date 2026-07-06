@@ -11,7 +11,10 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # Pinned to the latest stable ZMK release (matches the 0.3.0-based
+      # Studio firmware stack). For current ZMK main / Zephyr 4.1, use the
+      # zephyr-4.1 branch of this repo instead.
+      revision: v0.3.0
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: Cyboard-DigitalTailor

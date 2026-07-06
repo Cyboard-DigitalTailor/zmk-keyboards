@@ -1,5 +1,0 @@
-board:
-  name: assimilator-bt
-  vendor: cyboard
-  socs:
-    - name: nrf52840
