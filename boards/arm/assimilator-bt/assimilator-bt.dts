@@ -6,12 +6,11 @@
 
 /dts-v1/;
 #include <nordic/nrf52840_qiaa.dtsi>
-#include <common/nordic/nrf52840_uf2_boot_mode.dtsi>
 #include "assimilator-bt-pinctrl.dtsi"
 
 / {
     model = "assimilator-bt";
-    compatible = "cyboard,assimilator-bt";
+    compatible = "assimilator-bt";
 
     chosen {
         zephyr,code-partition = &code_partition;
@@ -37,14 +36,6 @@
     vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
     };
-};
-
-&reg0 {
-    status = "okay";
-};
-
-&reg1 {
-    regulator-initial-mode = <NRF5X_REG_MODE_DCDC>;
 };
 
 &adc {
@@ -73,14 +64,13 @@
 
     fuel_gauge: max17048@36 {
         compatible = "zmk,maxim-max17048";
-        reg = <0x36>;
+		reg = <0x36>;
         status = "okay";
     };
 };
 
 &spi1 {
     compatible = "nordic,nrf-spim";
-    status = "okay";
     pinctrl-0 = <&spi1_default>;
     pinctrl-1 = <&spi1_sleep>;
     pinctrl-names = "default", "sleep";
