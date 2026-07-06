@@ -74,6 +74,120 @@
                                 &kp N7  &kp N8  &kp N9    &kp N0  &kp N1  &kp N2
             >;
         };
+
+        // Reserved empty layers: skipped in regular builds, but compiled into
+        // ZMK Studio builds so users can add layers at runtime ("Add Layer"
+        // only works for layers that exist in the firmware). ZMK tracks layer
+        // state in a 32-bit mask, so 5 active + 27 reserved = 32 is the
+        // maximum. Keep these AFTER all active layers: the initial layer
+        // ordering assumes the active layers are the first keymap children.
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
+        };
+
+        extra3 {
+            status = "reserved";
+        };
+
+        extra4 {
+            status = "reserved";
+        };
+
+        extra5 {
+            status = "reserved";
+        };
+
+        extra6 {
+            status = "reserved";
+        };
+
+        extra7 {
+            status = "reserved";
+        };
+
+        extra8 {
+            status = "reserved";
+        };
+
+        extra9 {
+            status = "reserved";
+        };
+
+        extra10 {
+            status = "reserved";
+        };
+
+        extra11 {
+            status = "reserved";
+        };
+
+        extra12 {
+            status = "reserved";
+        };
+
+        extra13 {
+            status = "reserved";
+        };
+
+        extra14 {
+            status = "reserved";
+        };
+
+        extra15 {
+            status = "reserved";
+        };
+
+        extra16 {
+            status = "reserved";
+        };
+
+        extra17 {
+            status = "reserved";
+        };
+
+        extra18 {
+            status = "reserved";
+        };
+
+        extra19 {
+            status = "reserved";
+        };
+
+        extra20 {
+            status = "reserved";
+        };
+
+        extra21 {
+            status = "reserved";
+        };
+
+        extra22 {
+            status = "reserved";
+        };
+
+        extra23 {
+            status = "reserved";
+        };
+
+        extra24 {
+            status = "reserved";
+        };
+
+        extra25 {
+            status = "reserved";
+        };
+
+        extra26 {
+            status = "reserved";
+        };
+
+        extra27 {
+            status = "reserved";
+        };
     };
 };
 
