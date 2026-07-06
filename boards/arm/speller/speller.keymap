@@ -34,7 +34,7 @@ macros {
     rgbstatuslayer: rgb_status_layer {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      label = "Keyboard Settings Layer with RGB Status Indicators";
+#ifdef RGB_STATUS
       bindings
         = <&macro_press &mo 2>
         , <&macro_press &rgb_ug RGB_STATUS>
@@ -42,6 +42,15 @@ macros {
         , <&macro_release &mo 2>
         , <&macro_release &rgb_ug RGB_STATUS>
         ;
+#else
+      /* RGB_STATUS is a Cyboard ZMK extension (zmk-private); against
+       * upstream ZMK this is a plain momentary settings layer */
+      bindings
+        = <&macro_press &mo 2>
+        , <&macro_pause_for_release>
+        , <&macro_release &mo 2>
+        ;
+#endif
     };
   };
 
