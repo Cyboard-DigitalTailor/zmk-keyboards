@@ -1,11 +1,16 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include "imprint-layouts.dtsi"
+
+&physical_layout_imprint_function_row_full_bottom_row {
+    transform = <&imprint_function_row_full_bottom_row>;
+    kscan = <&kscan0>;
+};
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
-        zmk,matrix_transform = &imprint_function_row;
+        zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row;
     };
 
     default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the imprint flex-pcb system
@@ -252,5 +257,15 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
     trackball_central_listener: trackball_central_listener {
         compatible = "zmk,input-listener";
         status = "disabled";
+    };
+
+    // Unlock ZMK Studio by holding the A- and F-position keys (left home
+    // row, matrix row 3) for 3 seconds. Matrix coordinates, unlike key
+    // positions, are identical across all Imprint physical layouts, and
+    // this works no matter what the user has done to their keymap.
+    studio_unlock_combo {
+        compatible = "zmk,studio-unlock-combo";
+        keys = <RC(3,4) RC(3,1)>;
+        hold-time-ms = <3000>;
     };
 };
