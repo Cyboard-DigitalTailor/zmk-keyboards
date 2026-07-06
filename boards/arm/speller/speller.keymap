@@ -34,7 +34,6 @@ macros {
     rgbstatuslayer: rgb_status_layer {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
-      label = "Keyboard Settings Layer with RGB Status Indicators";
 #ifdef RGB_STATUS
       bindings
         = <&macro_press &mo 2>
