@@ -671,4 +671,70 @@
             , <&key_physical_attrs 100 100 1100  675       0     0     0>
             ;
     };
+
+    // Explicit cross-layout mapping for the 12 thumb-cluster keys.
+    //
+    // The fanned thumb arcs give all three keys of an arc the same x/y — they
+    // differ only in rotation. ZMK's fallback position mapping (used whenever
+    // the runtime-selected layout differs from the default one) matches keys
+    // across layouts by exact x/y ONLY, so without this map every thumb-arc
+    // key aliases to the first key of its arc: ZMK Studio edits then read and
+    // write the wrong key ("ghost" keymap updates confined to the thumb
+    // clusters). The grid keys all have unique x/y and are intentionally
+    // aligned across layouts, so they are left to the coordinate fallback
+    // (`complete` stays off).
+    //
+    // The thumb keys are the last 12 entries of every layout above, in the
+    // same order; each `positions` array below lists their key-position
+    // indices (keys_len - 12 .. keys_len - 1). Entry N of every array refers
+    // to the same physical key. If a layout gains or loses keys, update its
+    // row here.
+    imprint_position_map: position_map {
+        compatible = "zmk,physical-layout-position-map";
+
+        function_row_full_bottom_row {
+            physical-layout = <&physical_layout_imprint_function_row_full_bottom_row>;
+            positions = <70 71 72 73 74 75 76 77 78 79 80 81>;
+        };
+
+        function_row {
+            physical-layout = <&physical_layout_imprint_function_row>;
+            positions = <64 65 66 67 68 69 70 71 72 73 74 75>;
+        };
+
+        function_row_no_bottom_row {
+            physical-layout = <&physical_layout_imprint_function_row_no_bottom_row>;
+            positions = <60 61 62 63 64 65 66 67 68 69 70 71>;
+        };
+
+        number_row_full_bottom_row {
+            physical-layout = <&physical_layout_imprint_number_row_full_bottom_row>;
+            positions = <58 59 60 61 62 63 64 65 66 67 68 69>;
+        };
+
+        number_row {
+            physical-layout = <&physical_layout_imprint_number_row>;
+            positions = <52 53 54 55 56 57 58 59 60 61 62 63>;
+        };
+
+        number_row_no_bottom_row {
+            physical-layout = <&physical_layout_imprint_number_row_no_bottom_row>;
+            positions = <48 49 50 51 52 53 54 55 56 57 58 59>;
+        };
+
+        letters_only_full_bottom_row {
+            physical-layout = <&physical_layout_imprint_letters_only_full_bottom_row>;
+            positions = <46 47 48 49 50 51 52 53 54 55 56 57>;
+        };
+
+        letters_only {
+            physical-layout = <&physical_layout_imprint_letters_only>;
+            positions = <40 41 42 43 44 45 46 47 48 49 50 51>;
+        };
+
+        letters_only_no_bottom_row {
+            physical-layout = <&physical_layout_imprint_letters_only_no_bottom_row>;
+            positions = <36 37 38 39 40 41 42 43 44 45 46 47>;
+        };
+    };
 };
