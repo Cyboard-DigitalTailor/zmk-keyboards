@@ -11,6 +11,14 @@
 / {
     chosen {
         zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row;
+        // Kept for user configs that still select their variant the pre-Studio
+        // way, via `chosen { zmk,matrix-transform = ... }`. A chosen matrix
+        // transform makes ZMK ignore the physical layouts above and fall back
+        // to a synthetic layout whose kscan comes ONLY from this chosen node —
+        // without it those builds compile fine but scan no keys at all.
+        // Harmless when the physical layouts are in use (each carries its own
+        // kscan phandle).
+        zmk,kscan = &kscan0;
     };
 
     default_transform: keymap_transform_0 {//contains all possible key postions on the first 6 columns and 6 thumb keys of the imprint flex-pcb system
