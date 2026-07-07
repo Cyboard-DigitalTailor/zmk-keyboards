@@ -1,0 +1,13 @@
+# Copyright (c) 2026 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+DT_COMPAT_ZMK_STUDIO_UNLOCK_COMBO := zmk,studio-unlock-combo
+
+config ZMK_STUDIO_UNLOCK_COMBO
+    bool "Keymap-independent unlock key combo"
+    depends on ZMK_STUDIO_LOCKING
+    default $(dt_compat_enabled,$(DT_COMPAT_ZMK_STUDIO_UNLOCK_COMBO))
+    help
+      Unlock ZMK Studio by holding a fixed set of physical keys (defined
+      in devicetree by matrix row/column) for a configured duration,
+      without requiring a &studio_unlock binding in the keymap.

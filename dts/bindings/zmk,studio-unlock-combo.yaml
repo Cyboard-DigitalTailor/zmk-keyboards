@@ -1,0 +1,32 @@
+# Copyright (c) 2026 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: |
+  Keymap-independent ZMK Studio unlock combo.
+
+  Holding all of the listed keys for hold-time-ms unlocks the device for
+  ZMK Studio, exactly like the &studio_unlock behavior, but without needing
+  any binding in the user's keymap (which the user could edit away and lock
+  themselves out).
+
+  Keys are identified by kscan matrix row/column (use the RC() macro from
+  dt-bindings/zmk/matrix_transform.h), not by key position, so the combo
+  stays valid across physical layouts with differing key counts.
+
+compatible: "zmk,studio-unlock-combo"
+
+properties:
+  keys:
+    type: array
+    required: true
+    description: |
+      RC()-encoded matrix coordinates of the keys that must all be held.
+      Coordinates that the active layout's matrix transform does not map
+      are ignored.
+
+  hold-time-ms:
+    type: int
+    default: 3000
+    description: |
+      How long all keys must be held simultaneously before the device
+      unlocks, in milliseconds.
