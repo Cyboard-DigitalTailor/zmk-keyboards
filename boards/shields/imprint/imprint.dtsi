@@ -258,6 +258,13 @@ RC(2,6) RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1)                 RC(9,1)  RC(9,2)
         trackball_central_split: trackball_central_split@1 {
             compatible = "zmk,input-split";
             reg = <1>;
+            // Disabled by default: on peripheral builds every enabled
+            // input-split node must carry a `device` phandle (BUILD_ASSERT
+            // in input_split.c, and DEVICE_DT_GET in the private
+            // peripheral_pointing_config.c), so an enabled device-less
+            // node breaks the standard imprint_right build. Dongle-mode
+            // left-half configs enable this and set `device`.
+            status = "disabled";
         };
     };
 

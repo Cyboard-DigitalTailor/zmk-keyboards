@@ -13,7 +13,7 @@
 / {
     chosen {
         zmk,kscan = &kscan_dongle;
-        zmk,matrix-transform = &imprint_letters_only_full_bottom_row;
+        zmk,matrix-transform = &imprint_function_row_full_bottom_row;
     };
 
     kscan_dongle: kscan_dongle {
@@ -23,11 +23,16 @@
         events = <0>;
     };
 
-    imprint_letters_only_full_bottom_row: keymap_transform_8 {
+    // Default variant: function row + full bottom row (matches the imprint
+    // shield's default physical layout). Other variants can override the
+    // chosen node with a transform defined in the user keymap.
+    imprint_function_row_full_bottom_row: keymap_transform_2 {
         compatible = "zmk,matrix-transform";
         columns = <8>;
         rows = <14>;
         map = <
+RC(6,5) RC(6,4) RC(6,3) RC(6,2) RC(6,1) RC(6,0)                           RC(13,0) RC(13,1) RC(13,2) RC(13,3) RC(13,4) RC(13,5)
+RC(5,5) RC(5,4) RC(5,3) RC(5,2) RC(5,1) RC(5,0)                           RC(12,0) RC(12,1) RC(12,2) RC(12,3) RC(12,4) RC(12,5)
 RC(4,5) RC(4,4) RC(4,3) RC(4,2) RC(4,1) RC(4,0)                           RC(11,0) RC(11,1) RC(11,2) RC(11,3) RC(11,4) RC(11,5)
 RC(3,5) RC(3,4) RC(3,3) RC(3,2) RC(3,1) RC(3,0)                           RC(10,0) RC(10,1) RC(10,2) RC(10,3) RC(10,4) RC(10,5)
 RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1) RC(2,0)                           RC(9,0)  RC(9,1)  RC(9,2)  RC(9,3)  RC(9,4)  RC(9,5)
