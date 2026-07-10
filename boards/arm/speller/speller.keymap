@@ -20,15 +20,18 @@
 
     underglow_indicators: underglow-indicators {
         compatible = "zmk,underglow-indicators";
-        ble-profiles = < 5 4 3 2 1 >; // profile 0 1 2 3 4
-        usb-state = < 6 >; // USB status LED
+        // First entry is the aggregate BLE status/pairing LED in consumer
+        // mode — the BT (pair) key itself, so the hold-to-pair ramp and
+        // pairing pulse appear on the key being held.
+        ble-profiles = < 11 4 3 2 1 >;
+        usb-state = < 6 >; // USB status LED (F key)
         peripherals {
             left {
                 peripheral-battery = < 17 16 15 14 >; // 25% 50% 75% 100% battery
             };
         };
         caps-lock = < 23 >; // Caps Lock LED
-        status-key = < 11 >; // Blue pulse on status key
+        status-key = < 0 >; // Amber pulse on the settings key (logo)
         num-layer-index = < 1 >; // Numbers layer
         num-layer-toggle-key = < 12 >; // tog 1 key (pulses)
         num-layer-keys = < 5 4 3 2 1 6 7 8 9 10 >; // N1-N0 keys (solid)
@@ -53,8 +56,15 @@ macros {
 
         Letters {
             bindings = <
- &kp A      &kp B     &kp C     &kp D     &kp E     &studio_unlock
- &kp F      &kp G     &kp H     &kp I     &kp J     &togglestatus
+ &kp A      &kp B     &kp C     &kp D     &kp E     &togglestatus
+#ifdef BT_PAIR
+/* Consumer pairing (zmk-private@speller): the Bluetooth key is a first-class
+ * base-layer key — tap selects the Bluetooth output, hold 3 s forgets all
+ * devices and enters pairing mode (clear-all-and-pair). */
+ &kp F      &kp G     &kp H     &kp I     &kp J     &bt BT_PAIR
+#else
+ &kp F      &kp G     &kp H     &kp I     &kp J     &studio_unlock
+#endif
  &kp K      &kp L     &kp M     &kp N     &kp O     &tog 1
  &kp P      &kp Q     &kp R     &kp S     &kp T     &kp CAPS
  &kp U      &kp V     &kp W     &kp X     &kp Y     &kp Z
@@ -76,11 +86,12 @@ macros {
         Settings {
             bindings = <
 #ifdef BT_PAIR
-/* Consumer pairing mode (zmk-private@speller): one pair key — tap selects the
- * Bluetooth output, hold 3 s enters pairing mode. Bond slots are managed
- * automatically, so there are no profile-select keys. BT_CLR_ALL stays on the
- * logo key as a troubleshooting escape hatch ("forget all devices"). */
- &bt BT_PAIR   &none        &none        &none        &none         &bt BT_CLR_ALL
+/* Consumer pairing mode: no profile keys needed — pairing lives on the
+ * base-layer BT key (the &trans below it falls through, so hold-to-pair
+ * works with the status display on too). The logo position falls through
+ * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
+ * (it sat on the logo key before the logo became the settings toggle). */
+ &studio_unlock &trans      &trans       &trans       &trans        &trans
 #else
  &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &bt BT_CLR
 #endif
