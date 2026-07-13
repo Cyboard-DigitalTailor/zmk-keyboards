@@ -22,7 +22,9 @@
         compatible = "zmk,underglow-indicators";
         // First entry is the aggregate BLE status/pairing LED in consumer
         // mode — the BT (pair) key itself, so the hold-to-pair ramp and
-        // pairing pulse appear on the key being held.
+        // pairing pulse appear on the key being held. In a non-consumer
+        // build this is just profile 0's LED (on the BT key, off the top
+        // row) — cosmetic only; release builds always enable consumer mode.
         ble-profiles = < 11 4 3 2 1 >;
         usb-state = < 6 >; // USB status LED (F key)
         peripherals {
@@ -92,10 +94,15 @@ macros {
  * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
  * (it sat on the logo key before the logo became the settings toggle). */
  &studio_unlock &trans      &trans       &trans       &trans        &trans
-#else
- &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &bt BT_CLR
-#endif
  &trans  &trans  &trans  &trans  &to 3  &trans
+#else
+/* Upstream layout: the logo position must stay &trans so it falls through
+ * to togglestatus — Settings is a toggle now, and anything else here
+ * (e.g. BT_CLR) would soft-lock the layer. BT_CLR lives on the BT key
+ * instead, shadowing base-layer &studio_unlock while Settings is on. */
+ &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans
+ &trans  &trans  &trans  &trans  &to 3  &bt BT_CLR
+#endif
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF
