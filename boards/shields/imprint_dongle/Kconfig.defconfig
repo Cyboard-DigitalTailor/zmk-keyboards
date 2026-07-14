@@ -1,0 +1,33 @@
+if SHIELD_IMPRINT_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "Imprint Dongle"
+
+config ZMK_USB
+    default y
+
+config ZMK_BLE
+    default y
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+
+# The dongle terminates the pointing pipeline (it produces the mouse HID
+# reports); without this the input-split proxies and listeners compile out
+# and both trackballs go dead unless the user config sets it.
+config ZMK_POINTING
+    default y
+
+config ZMK_SLEEP
+    default n
+
+config PMW3610
+    default n
+
+endif

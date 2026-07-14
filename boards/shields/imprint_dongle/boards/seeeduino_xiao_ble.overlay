@@ -1,0 +1,38 @@
+// RGB underglow stays compiled in on every dongle board: the dongle is the
+// split central, and the central is what dispatches &rgb_ug — without it,
+// RGB control is dead for the whole keyboard in dongle mode, and all
+// Imprints ship with underglow. The imprint shield's Kconfig.defconfig
+// already defaults ZMK_RGB_UNDERGLOW=y module-wide; rgb_underglow.c just
+// needs a zmk,underglow chosen node to compile, so define the strip on the
+// XIAO's SPI MOSI (D10 / P1.15). On a bare XIAO nothing is wired there and
+// RGB starts off, so this is inert; wire a ws2812 strip to D10 to give the
+// dongle its own underglow.
+
+#include <dt-bindings/led/led.h>
+
+&spi2 {
+    compatible = "nordic,nrf-spim";
+    status = "okay";
+
+    led_strip: ws2812@0 {
+        compatible = "worldsemi,ws2812-spi";
+        label = "WS2812";
+
+        /* SPI */
+        reg = <0>; /* ignored, but necessary for SPI bindings */
+        spi-max-frequency = <4000000>;
+
+        /* WS2812 */
+        chain-length = <150>; /* arbitrary; change at will */
+        spi-one-frame = <0x70>;
+        spi-zero-frame = <0x40>;
+
+        color-mapping = <LED_COLOR_ID_GREEN LED_COLOR_ID_RED LED_COLOR_ID_BLUE>;
+    };
+};
+
+/ {
+    chosen {
+        zmk,underglow = &led_strip;
+    };
+};
