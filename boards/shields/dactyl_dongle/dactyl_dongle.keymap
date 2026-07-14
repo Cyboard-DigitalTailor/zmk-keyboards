@@ -1,0 +1,41 @@
+// Operative keymap for the dactyl dongle. The dongle is the split central,
+// so it owns the keymap — the halves' keymaps are inert in dongle mode. User
+// configs override this with their own dactyl_dongle.keymap (an existing
+// dactyl.keymap is NOT picked up for this shield).
+//
+// Byte-identical in intent to boards/shields/dactyl/dactyl.keymap: base
+// layer ported from the wired vial-qmk manuform_letters_only default, plus a
+// nav (right hand) + wireless-control (left hand) layer on MO(1).
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+&kp TAB    &kp Q     &kp W     &kp E     &kp R     &kp T                 &kp Y      &kp U     &kp I      &kp O     &kp P     &kp BSLH
+&kp LCTRL  &kp A     &kp S     &kp D     &kp F     &kp G                 &kp H      &kp J     &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z     &kp X     &kp C     &kp V     &kp B                 &kp N      &kp M     &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&kp UP     &kp DOWN  &kp LGUI  &kp LALT                                             &kp LBKT  &kp RBKT   &kp LEFT  &kp RIGHT
+                               &kp RET   &kp DEL   &kp ESC     &kp GRAVE  &kp BSPC  &kp SPACE
+                               &kp LGUI  &kp HOME  &kp END     &kp CAPS   &kp K_APP &mo 1
+            >;
+        };
+
+        nav_control_layer {
+            bindings = <
+&bt BT_CLR       &bt BT_SEL 0     &bt BT_SEL 1     &bt BT_SEL 2     &bt BT_SEL 3     &bt BT_SEL 4                &trans  &kp HOME  &kp UP    &kp END    &trans  &trans
+&rgb_ug RGB_TOG  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_EFF  &rgb_ug RGB_SPI             &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
+&bootloader      &sys_reset       &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD             &trans  &trans    &trans    &trans     &trans  &trans
+&trans           &trans           &trans           &trans                                                                &trans    &trans    &trans     &trans
+                                                    &trans           &trans           &trans      &trans  &trans  &trans
+                                                    &trans           &trans           &trans      &trans  &trans  &trans
+            >;
+        };
+    };
+};

@@ -32,3 +32,18 @@ include:
   - board: speller
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
+  # Dactyl Manuform (letters only). Normal split: dactyl_left is the central,
+  # dactyl_right the peripheral. Dongle mode: dactyl_dongle is the central and
+  # both halves are peripherals — dactyl_right is already a peripheral, and
+  # dactyl_left is rebuilt with ZMK_SPLIT_ROLE_CENTRAL=n (dactyl_left-peripheral).
+  - board: assimilator-bt
+    shield: dactyl_left
+  - board: assimilator-bt
+    shield: dactyl_right
+  - board: assimilator-bt
+    shield: dactyl_left
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    artifact-name: dactyl_left-peripheral
+  - board: assimilator-bt
+    shield: dactyl_dongle
+    artifact-name: dactyl_dongle_assimilator
