@@ -37,3 +37,10 @@ CONFIG_ZMK_RGB_UNDERGLOW_BRT_MAX=50
 
 # Host lock-state (Caps Lock) reporting, used by the caps-lock LED indicator
 CONFIG_ZMK_HID_INDICATORS=y
+
+# "Just Works" BLE pairing — no numeric code on the host. The Speller has no
+# dedicated number row, so passkey entry (implied on via
+# BT_SMP_ALLOW_UNAUTH_OVERWRITE) was a first-pairing stumbling block. Trades
+# away MITM authentication on the link (encryption unaffected), matching
+# consumer-keyboard norms.
+CONFIG_ZMK_BLE_PASSKEY_ENTRY=n

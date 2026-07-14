@@ -26,7 +26,10 @@
         // build this is just profile 0's LED (on the BT key, off the top
         // row) — cosmetic only; release builds always enable consumer mode.
         ble-profiles = < 11 4 3 2 1 >;
-        usb-state = < 6 >; // USB status LED (F key)
+        // USB status on the C and D keys — the USB port sits right between
+        // them, so the white "typing goes over the cable" light is physically
+        // anchored to the port
+        usb-state = < 3 2 >;
         peripherals {
             left {
                 peripheral-battery = < 17 16 15 14 >; // 25% 50% 75% 100% battery
