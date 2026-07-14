@@ -95,9 +95,11 @@ macros {
  * base-layer BT key (the &trans below it falls through, so hold-to-pair
  * works with the status display on too). The logo position falls through
  * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
- * (it sat on the logo key before the logo became the settings toggle). */
+ * (it sat on the logo key before the logo became the settings toggle).
+ * F = Forget all devices: the escape hatch now that the switch window
+ * keeps bonds — a true Bluetooth factory reset. */
  &studio_unlock &trans      &trans       &trans       &trans        &trans
- &trans  &trans  &trans  &trans  &to 3  &trans
+ &bt BT_CLR_ALL &trans  &trans  &trans  &to 3  &trans
 #else
 /* Upstream layout: the logo position must stay &trans so it falls through
  * to togglestatus — Settings is a toggle now, and anything else here
