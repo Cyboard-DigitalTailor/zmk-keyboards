@@ -24,6 +24,11 @@ include:
     cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: assimilator-bt
     shield: imprint_right
+  - board: seeeduino_xiao_ble
+    shield: imprint_dongle
+  - board: assimilator-bt
+    shield: imprint_dongle
+    artifact-name: imprint_dongle_assimilator
   - board: speller
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
