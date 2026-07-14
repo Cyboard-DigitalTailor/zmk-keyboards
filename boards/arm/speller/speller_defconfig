@@ -44,3 +44,14 @@ CONFIG_ZMK_HID_INDICATORS=y
 # away MITM authentication on the link (encryption unaffected), matching
 # consumer-keyboard norms.
 CONFIG_ZMK_BLE_PASSKEY_ENTRY=n
+
+# Serial number + firmware version over Bluetooth (Device Information
+# Service). USB already reports the serial via Zephyr's standard
+# HWINFO-derived descriptor; with the Cyboard ZMK extension
+# (ZMK_DIS_SERIAL_HWINFO, zmk-private@speller) the same uppercase-hex
+# chip ID is published over BLE too. The firmware revision string is
+# stamped per release by zmk-environment/build.sh --fw-version.
+CONFIG_BT_DIS_SETTINGS=y
+CONFIG_BT_DIS_SERIAL_NUMBER=y
+CONFIG_BT_DIS_FW_REV=y
+CONFIG_BT_DIS_FW_REV_STR="dev"
