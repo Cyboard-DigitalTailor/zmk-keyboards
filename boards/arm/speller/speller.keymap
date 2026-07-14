@@ -97,14 +97,14 @@ macros {
  * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
  * (it sat on the logo key before the logo became the settings toggle). */
  &studio_unlock &trans      &trans       &trans       &trans        &trans
- &trans  &trans  &trans  &trans  &to 3  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
 #else
 /* Upstream layout: the logo position must stay &trans so it falls through
  * to togglestatus — Settings is a toggle now, and anything else here
  * (e.g. BT_CLR) would soft-lock the layer. BT_CLR lives on the BT key
  * instead, shadowing base-layer &studio_unlock while Settings is on. */
  &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans
- &trans  &trans  &trans  &trans  &to 3  &bt BT_CLR
+ &trans  &trans  &trans  &trans  &trans  &bt BT_CLR
 #endif
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans
@@ -113,21 +113,15 @@ macros {
             >;
         };
 
-        Factory {
-            bindings = <
- &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6
- &kp N7  &kp N8  &kp N9  &kp N0  &kp N1  &kp N2
- &kp N3  &kp N4  &kp N5  &kp N6  &kp N7  &kp N8
- &kp N9  &kp N0  &kp N1  &kp N2  &kp N3  &kp N4
- &kp N5  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0
- &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6
-            >;
-        };
+        // The old Factory test layer is gone (2026-07-14): factory testing
+        // now uses dedicated test firmware (zmk-environment/factory/), and
+        // the layer was a soft-lock in customer hands — `&to` into a layer
+        // of plain number keys had no way back until a power cycle.
 
         // Reserved empty layers: skipped in regular builds, but compiled into
         // ZMK Studio builds so users can add layers at runtime ("Add Layer"
         // only works for layers that exist in the firmware). ZMK tracks layer
-        // state in a 32-bit mask, so 4 active + 28 reserved = 32 is the
+        // state in a 32-bit mask, so 3 active + 29 reserved = 32 is the
         // maximum. Keep these AFTER all active layers: the initial layer
         // ordering assumes the active layers are the first keymap children.
         extra1 {
@@ -239,6 +233,10 @@ macros {
         };
 
         extra28 {
+            status = "reserved";
+        };
+
+        extra29 {
             status = "reserved";
         };
     };
