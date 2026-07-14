@@ -96,8 +96,11 @@ macros {
  * works with the status display on too). The logo position falls through
  * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
  * (it sat on the logo key before the logo became the settings toggle).
- * F = Forget all devices: the escape hatch now that the switch window
- * keeps bonds — a true Bluetooth factory reset. */
+ * F = Forget all devices: a true Bluetooth factory reset, for support
+ * cases (corrupted bonds) and handing the keyboard on — NOT for everyday
+ * switching (use the switch window). It only wipes the keyboard's side:
+ * every host still holds its keys and shows "can't connect" until the
+ * user Forgets the keyboard there too. */
  &studio_unlock &trans      &trans       &trans       &trans        &trans
  &bt BT_CLR_ALL &trans  &trans  &trans  &to 3  &trans
 #else
