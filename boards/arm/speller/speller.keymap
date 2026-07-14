@@ -54,6 +54,24 @@ macros {
       bindings = <&tog 2>;
 #endif
     };
+
+    bt_forget_all: bt_forget_all {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&bt BT_CLR_ALL>;
+    };
+  };
+
+  behaviors {
+    /* Bluetooth factory reset needs to be very deliberate: 3 s hold, tap
+     * does nothing. */
+    frbt: factory_reset_bt {
+      compatible = "zmk,behavior-hold-tap";
+      #binding-cells = <2>;
+      flavor = "hold-preferred";
+      tapping-term-ms = <3000>;
+      bindings = <&bt_forget_all>, <&none>;
+    };
   };
 
     keymap {
@@ -96,13 +114,14 @@ macros {
  * works with the status display on too). The logo position falls through
  * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
  * (it sat on the logo key before the logo became the settings toggle).
- * F = Forget all devices: a true Bluetooth factory reset, for support
- * cases (corrupted bonds) and handing the keyboard on — NOT for everyday
- * switching (use the switch window). It only wipes the keyboard's side:
- * every host still holds its keys and shows "can't connect" until the
- * user Forgets the keyboard there too. */
+ * Hold F 3 s = Forget all devices: a true Bluetooth factory reset, for
+ * support cases (corrupted bonds) and handing the keyboard on — NOT for
+ * everyday switching (use the switch window). Hold-only so it can't fire
+ * by accident; it only wipes the keyboard's side: every host still holds
+ * its keys and shows "can't connect" until the user Forgets the keyboard
+ * there too. */
  &studio_unlock &trans      &trans       &trans       &trans        &trans
- &bt BT_CLR_ALL &trans  &trans  &trans  &to 3  &trans
+ &frbt 0 0  &trans  &trans  &trans  &to 3  &trans
 #else
 /* Upstream layout: the logo position must stay &trans so it falls through
  * to togglestatus — Settings is a toggle now, and anything else here
