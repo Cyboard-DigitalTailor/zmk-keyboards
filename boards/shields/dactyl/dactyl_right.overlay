@@ -1,0 +1,21 @@
+#include "dactyl.dtsi"
+
+// Right half (always a peripheral). The right hand sits 7 matrix rows below
+// the left, so the transform is shifted by a row offset of 7: the half
+// scans physical rows 0-6, which then resolve to the transform's rows 7-13
+// (the right-hand RC() entries).
+&dactyl_manuform_letters_only {
+    row-offset = <7>;
+};
+
+&kscan0 {
+    row-gpios
+        = <&gpio1 4 GPIO_ACTIVE_HIGH> // row0 from schematic
+        , <&gpio0 11 GPIO_ACTIVE_HIGH> // row1 from schematic
+        , <&gpio0 29 GPIO_ACTIVE_HIGH> // row2 from schematic
+        , <&gpio1 0 GPIO_ACTIVE_HIGH> // row3 from schematic
+        , <&gpio0 10 GPIO_ACTIVE_HIGH> // row4 from schematic
+        , <&gpio0 2 GPIO_ACTIVE_HIGH> // row5 from schematic
+        , <&gpio0 9 GPIO_ACTIVE_HIGH> // row6 from schematic
+        ;
+};

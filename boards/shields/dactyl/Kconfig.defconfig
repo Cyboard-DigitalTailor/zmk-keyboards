@@ -1,0 +1,30 @@
+if SHIELD_DACTYL_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Dactyl"
+
+# Left is the split central in the normal (no-dongle) configuration. In
+# dongle mode this is overridden to n at build time so both halves become
+# BLE peripherals of the dongle (see build.yaml / the dongle shield).
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_DACTYL_LEFT || SHIELD_DACTYL_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SLEEP
+    default y
+
+endif
+
+# NOTE: RGB underglow defaults (ZMK_RGB_UNDERGLOW=y, brightness, etc.) are
+# declared module-wide, outside a shield guard, in the imprint shield's
+# Kconfig.defconfig, so every build in this repo inherits them. That is why
+# each dactyl board overlay must still define a zmk,underglow strip even
+# though this shield sets no RGB config of its own — rgb_underglow.c will not
+# compile without a chosen strip. This dactyl has no trackball, so none of
+# the imprint pointing/PMW3610/SPI config is carried here.

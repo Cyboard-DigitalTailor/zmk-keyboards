@@ -1,0 +1,32 @@
+if SHIELD_DACTYL_DONGLE
+
+config ZMK_KEYBOARD_NAME
+    default "Dactyl Dongle"
+
+config ZMK_USB
+    default y
+
+config ZMK_BLE
+    default y
+
+config ZMK_SPLIT
+    default y
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+# Both dactyl halves connect to the dongle as BLE peripherals.
+config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
+    default 2
+
+# The dongle is USB-powered and has no keys of its own, so it never sleeps.
+config ZMK_SLEEP
+    default n
+
+endif
+
+# This dactyl has no trackball, so there is no ZMK_POINTING / PMW3610 / SPI
+# pointing config here (unlike the imprint dongle). RGB underglow stays on
+# module-wide (see the imprint shield's Kconfig.defconfig) and the board
+# overlay supplies the required zmk,underglow strip; the dongle, as split
+# central, is what dispatches &rgb_ug to the halves.
