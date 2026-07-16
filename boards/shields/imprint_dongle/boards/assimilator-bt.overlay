@@ -9,7 +9,7 @@
 // (as split central) is also what dispatches &rgb_ug to the halves. Every
 // dongle board overlay must define a strip + zmk,underglow chosen —
 // ZMK_RGB_UNDERGLOW defaults y module-wide and rgb_underglow.c won't
-// compile without one (see the seeeduino_xiao_ble overlay).
+// compile without one (see the xiao_ble overlay).
 
 #include <dt-bindings/led/led.h>
 

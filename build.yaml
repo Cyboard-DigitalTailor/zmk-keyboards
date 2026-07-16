@@ -22,7 +22,7 @@ include:
     shield: imprint_left
   - board: assimilator-bt
     shield: imprint_right
-  - board: seeeduino_xiao_ble
+  - board: xiao_ble/nrf52840/zmk
     shield: imprint_dongle
   - board: assimilator-bt
     shield: imprint_dongle
