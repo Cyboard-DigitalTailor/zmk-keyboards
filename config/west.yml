@@ -18,6 +18,11 @@ manifest:
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: Cyboard-DigitalTailor
-      revision: startup_optimization
+      # Pinned to a tagged release so a zmk-keyboards snapshot freezes its whole
+      # module chain: a later change on the driver's startup_optimization branch
+      # cannot shift trackball behavior under a config pinned to a zmk-keyboards
+      # tag. Bump this deliberately alongside the zmk-keyboards release tag. To
+      # track the moving branch instead, set this to startup_optimization.
+      revision: v2026.07
   self:
     path: config
