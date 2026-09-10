@@ -84,13 +84,55 @@ profile-select keys instead of consumer pairing.
 2. **Flash:** plug the Speller in over USB-C, double-tap the reset button to
    expose the `ASSIMILATOR` drive, and drag `speller-studio.uf2` onto it. It
    reboots automatically.
-3. **Type-test** in any editor. Expected output:
-   - Every letter cap prints its own letter, including **č ć đ š ž** and the
-     digraphs **dž lj nj** (hold Shift → uppercase).
-   - **Z** prints `z` (not `y`) — the QWERTZ swap is handled.
-   - `.` Backspace Space Enter behave normally.
-   - If accented keys print `; ' ] [ \` instead, the host is **not** on the
-     Croatian layout — fix step 1.
+3. **Type-test** in any editor. Go cap-by-cap in the physical order below and
+   confirm each key prints exactly the character shown — unshifted, then with
+   **Shift** held. This catches a single transposed binding (e.g. Š↔Đ) or a
+   digraph that only emits one of its two letters, which a free-form "looks
+   right" scan would miss. All 30 letters plus the four text keys:
+
+   | Cap | Unshifted | With Shift |
+   |:--:|:--:|:--:|
+   | A | a | A |
+   | B | b | B |
+   | C | c | C |
+   | Č | č | Č |
+   | Ć | ć | Ć |
+   | D | d | D |
+   | DŽ | dž | **DŽ** (all-caps — *not* `Dž`) |
+   | Đ | đ | Đ |
+   | E | e | E |
+   | F | f | F |
+   | G | g | G |
+   | H | h | H |
+   | I | i | I |
+   | J | j | J |
+   | K | k | K |
+   | L | l | L |
+   | LJ | lj | **LJ** (all-caps) |
+   | M | m | M |
+   | N | n | N |
+   | NJ | nj | **NJ** (all-caps) |
+   | O | o | O |
+   | P | p | P |
+   | R | r | R |
+   | S | s | S |
+   | Š | š | Š |
+   | T | t | T |
+   | U | u | U |
+   | V | v | V |
+   | Z | z | Z |
+   | Ž | ž | Ž |
+   | `.` (period) | `.` | (host-dependent punctuation) |
+   | Backspace | deletes previous char | — |
+   | Space | space | — |
+   | Enter | newline | — |
+
+   Watch specifically for:
+   - **Z** prints `z`/`Z`, never `y`/`Y` — confirms the QWERTZ Y/Z swap.
+   - **DŽ / LJ / NJ** each print **two** letters; under Shift they must be the
+     all-caps `DŽ` / `LJ` / `NJ`, not the title-case `Dž` / `Lj` / `Nj`.
+   - If the accented keys (Č Ć Đ Š Ž) print `; ' ] [ \` instead, the host is
+     **not** on the Croatian layout — fix step 1.
 4. **Bluetooth:** tap the Bluetooth key to advertise, pair from the host, and
    confirm typing works wirelessly. On the production (speller-branch) build,
    holding it ~3 s clears bonds and re-enters pairing.

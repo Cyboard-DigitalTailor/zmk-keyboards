@@ -132,7 +132,10 @@ macros {
         compatible = "zmk,keymap";
 
         /* Croatian (Gaj's Latin alphabet) base layer. Physical order matches
-         * cyboard/Cyboard/Spellers.hs keyData_croatian (finalized keycaps):
+         * the finalized keycaps in cyboard PR #74
+         * (https://github.com/Cyboard-DigitalTailor/cyboard/pull/74) — see the
+         * `keyData_croatian` binding it adds to Cyboard/Spellers.hs (that symbol
+         * lands on main only once #74 merges; it is not in Spellers.hs before then):
          *
          *    A   B   C   Č   Ć   [Logo]
          *    D   DŽ  Đ   E   F   [BT]
