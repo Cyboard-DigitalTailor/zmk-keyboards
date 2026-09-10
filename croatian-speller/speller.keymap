@@ -1,0 +1,326 @@
+/*
+ * Croatian Speller keymap  (issue #117)
+ * ------------------------------------------------------------------------
+ * A ZMK_CONFIG *override* keymap for the stock `speller` board. Build with:
+ *
+ *   zmk-environment/build.sh speller \
+ *       --config <ws>/zmk-keyboards/croatian-speller \
+ *       --fw-version <version>
+ *
+ * When ZMK finds `speller.keymap` in the passed ZMK_CONFIG dir it uses THIS
+ * file instead of boards/arm/speller/speller.keymap, so the English default
+ * that normal Spellers ship with is untouched.
+ *
+ * HOW CROATIAN LETTERS ARE PRODUCED
+ * ------------------------------------------------------------------------
+ * This is a positional keymap: the board sends the SAME HID scancodes a real
+ * Croatian keyboard sends, and the HOST OS — set to the *Croatian* keyboard
+ * layout — turns them into č ć đ š ž. The Croatian layout is QWERTZ and puts
+ * the five accented letters on the US punctuation keys:
+ *
+ *     č = US ;      ć = US '      đ = US ]      š = US [      ž = US \
+ *     z = US Y      (QWERTZ swaps Y/Z; Croatian has no Y letter)
+ *
+ * So Č -> &kp SEMI, Ć -> &kp SQT, Đ -> &kp RBKT, Š -> &kp LBKT,
+ *    Ž -> &kp BSLH, and the Croatian letter Z -> &kp Y.
+ * Every other letter (A B C D E F G H I J K L M N O P R S T U V) is in the
+ * same place on QWERTY and QWERTZ, so it maps straight through.
+ *
+ * The digraphs dž lj nj are typed as two letters, so each dedicated cap is a
+ * macro that emits its two base scancodes (ž itself is US \, so DŽ = D + \).
+ * A held Shift applies to both letters -> "DŽ"; unshifted -> "dž".
+ *
+ * ==> The customer's OS input language MUST be set to Croatian. With a US
+ *     layout the accented keys type ; ' ] [ \ instead. See the PR / test
+ *     instructions for the one-time host setup.
+ *
+ * Everything below the Letters layer (macros scaffold, Numbers/Settings
+ * layers, reserved Studio layers, underglow indicators) is copied verbatim
+ * from the stock board keymap so behaviour, LEDs and ZMK Studio builds match
+ * the English Speller exactly.
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    chosen {
+        zmk,underglow-indicators = &underglow_indicators;
+    };
+
+    /* LED Locations
+        5   4   3   2   1   0
+        6   7   8   9   10  11
+        17  16  15  14  13  12
+        18  19  20  21  22  23
+        29  28  27  26  25  24
+        30  31  32  33  34  35
+    */
+
+    underglow_indicators: underglow-indicators {
+        compatible = "zmk,underglow-indicators";
+        // First entry is the aggregate BLE status/pairing LED in consumer
+        // mode — the BT (pair) key itself, so the hold-to-pair ramp and
+        // pairing pulse appear on the key being held. In a non-consumer
+        // build this is just profile 0's LED (on the BT key, off the top
+        // row) — cosmetic only; release builds always enable consumer mode.
+        ble-profiles = < 11 4 3 2 1 >;
+        // USB status on the C and Č keys — the USB port sits right between
+        // them, so the white "typing goes over the cable" light is physically
+        // anchored to the port
+        usb-state = < 3 2 >;
+        peripherals {
+            left {
+                peripheral-battery = < 17 16 15 14 >; // 25% 50% 75% 100% battery
+            };
+        };
+        // NOTE (Croatian variant): the English board also declared
+        //   caps-lock = <23>  and  num-layer-* = <...>
+        // Those pointed at the Caps Lock and Numbers-toggle keys, which this
+        // 30-letter Croatian layout no longer has (their positions are now
+        // Backspace and the period key). They are dropped so no LED lights on
+        // a key whose function is gone. Caps Lock host-state reporting stays
+        // compiled in (CONFIG_ZMK_HID_INDICATORS) but has no on-board key.
+        status-key = < 0 >; // Amber pulse on the settings key (logo)
+    };
+
+macros {
+    togglestatus: toggle_status {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+#ifdef RGB_STATUS
+      bindings = <&tog 2>, <&rgb_ug RGB_STATUS>;
+#else
+      /* RGB_STATUS is a Cyboard ZMK extension (zmk-private@speller); against
+       * upstream ZMK this is a plain toggled settings layer */
+      bindings = <&tog 2>;
+#endif
+    };
+
+    /* Croatian digraphs — two base letters each. The host (Croatian layout)
+     * turns US \ into ž, so DŽ = D + \. A held Shift carries to both letters
+     * (-> "DŽ"); unshifted gives "dž". */
+    dz: dz_digraph {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <0>;
+      tap-ms = <5>;
+      bindings = <&kp D &kp BSLH>;
+    };
+
+    lj: lj_digraph {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <0>;
+      tap-ms = <5>;
+      bindings = <&kp L &kp J>;
+    };
+
+    nj: nj_digraph {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      wait-ms = <0>;
+      tap-ms = <5>;
+      bindings = <&kp N &kp J>;
+    };
+  };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        /* Croatian (Gaj's Latin alphabet) base layer. Physical order matches
+         * the finalized keycaps in cyboard PR #74
+         * (https://github.com/Cyboard-DigitalTailor/cyboard/pull/74) — see the
+         * `keyData_croatian` binding it adds to Cyboard/Spellers.hs (that symbol
+         * lands on main only once #74 merges; it is not in Spellers.hs before then):
+         *
+         *    A   B   C   Č   Ć   [Logo]
+         *    D   DŽ  Đ   E   F   [BT]
+         *    G   H   I   J   K   [ . ]
+         *    L   LJ  M   N   NJ  [Bksp]
+         *    O   P   R   S   Š   [Space]
+         *    T   U   V   Z   Ž   [Enter]
+         *
+         * See the file header for the US-punctuation-key -> accented-letter
+         * mapping (host must be on the Croatian layout).
+         */
+        Letters {
+            bindings = <
+ &kp A      &kp B     &kp C     &kp SEMI  &kp SQT   &togglestatus
+#ifdef BT_PAIR
+/* Consumer pairing (zmk-private@speller): the Bluetooth key is a first-class
+ * base-layer key — tap selects the Bluetooth output, hold 3 s forgets all
+ * devices and enters pairing mode (clear-all-and-pair). */
+ &kp D      &dz       &kp RBKT  &kp E     &kp F     &bt BT_PAIR
+#else
+ &kp D      &dz       &kp RBKT  &kp E     &kp F     &studio_unlock
+#endif
+ &kp G      &kp H     &kp I     &kp J     &kp K     &kp DOT
+ &kp L      &lj       &kp M     &kp N     &nj       &kp BSPC
+ &kp O      &kp P     &kp R     &kp S     &kp LBKT  &kp SPACE
+ &kp T      &kp U     &kp V     &kp Y     &kp BSLH  &kp RET
+            >;
+        };
+
+        Numbers {
+            bindings = <
+ &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &trans
+ &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        Settings {
+            bindings = <
+#ifdef BT_PAIR
+/* Consumer pairing mode: no profile keys needed — pairing lives on the
+ * base-layer BT key (the &trans below it falls through, so hold-to-pair
+ * works with the status display on too). The logo position falls through
+ * to togglestatus so pressing the logo again exits; A unlocks ZMK Studio
+ * (it sat on the logo key before the logo became the settings toggle). */
+ &studio_unlock &trans      &trans       &trans       &trans        &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+#else
+/* Upstream layout: the logo position must stay &trans so it falls through
+ * to togglestatus — Settings is a toggle now, and anything else here
+ * (e.g. BT_CLR) would soft-lock the layer. BT_CLR lives on the BT key
+ * instead, shadowing base-layer &studio_unlock while Settings is on. */
+ &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4  &trans
+ &trans  &trans  &trans  &trans  &trans  &bt BT_CLR
+#endif
+ &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &trans  &trans  &trans  &trans  &trans
+ &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF
+ &rgb_ug RGB_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR
+            >;
+        };
+
+        // Reserved empty layers: skipped in regular builds, but compiled into
+        // ZMK Studio builds so users can add layers at runtime ("Add Layer"
+        // only works for layers that exist in the firmware). ZMK tracks layer
+        // state in a 32-bit mask, so 3 active + 29 reserved = 32 is the
+        // maximum. Keep these AFTER all active layers: the initial layer
+        // ordering assumes the active layers are the first keymap children.
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
+        };
+
+        extra3 {
+            status = "reserved";
+        };
+
+        extra4 {
+            status = "reserved";
+        };
+
+        extra5 {
+            status = "reserved";
+        };
+
+        extra6 {
+            status = "reserved";
+        };
+
+        extra7 {
+            status = "reserved";
+        };
+
+        extra8 {
+            status = "reserved";
+        };
+
+        extra9 {
+            status = "reserved";
+        };
+
+        extra10 {
+            status = "reserved";
+        };
+
+        extra11 {
+            status = "reserved";
+        };
+
+        extra12 {
+            status = "reserved";
+        };
+
+        extra13 {
+            status = "reserved";
+        };
+
+        extra14 {
+            status = "reserved";
+        };
+
+        extra15 {
+            status = "reserved";
+        };
+
+        extra16 {
+            status = "reserved";
+        };
+
+        extra17 {
+            status = "reserved";
+        };
+
+        extra18 {
+            status = "reserved";
+        };
+
+        extra19 {
+            status = "reserved";
+        };
+
+        extra20 {
+            status = "reserved";
+        };
+
+        extra21 {
+            status = "reserved";
+        };
+
+        extra22 {
+            status = "reserved";
+        };
+
+        extra23 {
+            status = "reserved";
+        };
+
+        extra24 {
+            status = "reserved";
+        };
+
+        extra25 {
+            status = "reserved";
+        };
+
+        extra26 {
+            status = "reserved";
+        };
+
+        extra27 {
+            status = "reserved";
+        };
+
+        extra28 {
+            status = "reserved";
+        };
+
+        extra29 {
+            status = "reserved";
+        };
+    };
+};
