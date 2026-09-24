@@ -70,14 +70,20 @@ config ZMK_RGB_UNDERGLOW_HUE_START
 # hand. Both halves carry a MAX17048 fuel gauge (boards/arm/assimilator-bt),
 # so these report real per-hand charge.
 #
-# Declared module-wide, like the RGB defaults above: the upstream symbols only
-# exist for BLE-split central builds (they are wrapped in `if
-# ZMK_SPLIT_ROLE_CENTRAL` in app/src/split/bluetooth/Kconfig), so this is a
-# no-op for peripheral halves and non-split builds, and applies to every
+# Declared module-wide, like the RGB defaults above, so it covers every
 # central in this module (imprint_left, imprint_dongle, dactyl_left,
-# dactyl_dongle).
+# dactyl_dongle). It MUST be gated on ZMK_SPLIT_ROLE_CENTRAL, not on a shield:
+# PROXY drags in central_bas_proxy.c, which fails to compile on a peripheral
+# (no peripheral-count macros), and dactyl_left is built both as the central
+# AND, in dongle mode, as a forced peripheral (-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n,
+# artifact dactyl_left-peripheral) from the same shield. The role check keeps
+# these off for every peripheral/dongle-half build.
+if ZMK_SPLIT_ROLE_CENTRAL
+
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
     default y
 
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY
     default y
+
+endif # ZMK_SPLIT_ROLE_CENTRAL
