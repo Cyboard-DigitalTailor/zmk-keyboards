@@ -57,3 +57,33 @@ config ZMK_RGB_UNDERGLOW_BRT_STEP
 
 config ZMK_RGB_UNDERGLOW_HUE_START
     default 40
+
+# wiki#145: make the peripheral (e.g. right-half) battery level visible.
+#
+# By default a BLE split central never fetches its peripherals' battery
+# levels, so there is no straightforward way to read the right hand's charge.
+# Enabling FETCHING pulls each peripheral's state-of-charge to the central
+# (and raises zmk_peripheral_battery_state_changed events, which on-device
+# consumers such as an RGB battery indicator can use), and PROXY re-exposes
+# those levels over an additional BLE Battery service so hosts and tools like
+# zmk-battery-center (https://github.com/kot149/zmk-battery-center) show every
+# hand. Both halves carry a MAX17048 fuel gauge (boards/arm/assimilator-bt),
+# so these report real per-hand charge.
+#
+# Declared module-wide, like the RGB defaults above, so it covers every
+# central in this module (imprint_left, imprint_dongle, dactyl_left,
+# dactyl_dongle). It MUST be gated on ZMK_SPLIT_ROLE_CENTRAL, not on a shield:
+# PROXY drags in central_bas_proxy.c, which fails to compile on a peripheral
+# (no peripheral-count macros), and dactyl_left is built both as the central
+# AND, in dongle mode, as a forced peripheral (-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n,
+# artifact dactyl_left-peripheral) from the same shield. The role check keeps
+# these off for every peripheral/dongle-half build.
+if ZMK_SPLIT_ROLE_CENTRAL
+
+config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
+    default y
+
+config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY
+    default y
+
+endif # ZMK_SPLIT_ROLE_CENTRAL
