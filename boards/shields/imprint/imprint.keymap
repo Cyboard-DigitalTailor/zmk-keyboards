@@ -7,6 +7,37 @@
 #include <dt-bindings/zmk/rgb.h>
 
 / {
+    chosen {
+        zmk,underglow-indicators = &underglow_indicators;
+    };
+
+    // Battery gauge shown by the RGB_STATUS "magic key" (Keyboard_Control_Layer).
+    // Both gauges render on the CENTRAL (left) half's strip: the central can
+    // read its own charge and fetch the peripheral's over the split link, but it
+    // cannot drive the peripheral's LEDs. "left" is the central's own battery;
+    // "right" is the peripheral (right half). The RGB_STATUS engine lives in
+    // zmk-private; against upstream ZMK this node is simply an unbound compatible
+    // and is ignored.
+    //
+    // Indices are the WS2812 chain positions for the STANDARD layout
+    // (imprint_function_row_5key_bottom_row, 41 LEDs/half), derived from that
+    // layout's vial-qmk rgb_matrix order: the top function row and the row below
+    // it, ordered pinky -> centre so the gauge fills toward the centre.
+    // Per-cut layouts reroute the data line, so other cuts should override these
+    // in their own config; a layout that leaves the node off shows no gauge.
+    // Verify/adjust against hardware (that is what the draft test release is for).
+    underglow_indicators: underglow-indicators {
+        compatible = "zmk,underglow-indicators";
+        peripherals {
+            left {
+                peripheral-battery = < 32 26 20 14 >; // 25% 50% 75% 100% (own/left)
+            };
+            right {
+                peripheral-battery = < 33 27 21 15 >; // 25% 50% 75% 100% (peripheral/right)
+            };
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -39,7 +70,13 @@
         Keyboard_Control_Layer {
             bindings = <
 &trans       &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &trans
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4            &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+#ifdef RGB_STATUS
+    &rgb_ug RGB_STATUS  /* show battery on the underglow for a few seconds */
+#else
+    &trans              /* RGB_STATUS is a Cyboard ZMK extension (zmk-private) */
+#endif
+                                                                                    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
 &sys_reset   &trans        &trans        &trans        &trans        &studio_unlock          &rgb_ug RGB_TOG  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &sys_reset
 &bootloader  &trans        &trans        &trans        &trans        &trans                  &trans  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &bootloader
 &to 4        &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &to 4
