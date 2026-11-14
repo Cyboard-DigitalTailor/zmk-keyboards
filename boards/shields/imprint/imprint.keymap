@@ -7,6 +7,19 @@
 #include <dt-bindings/zmk/rgb.h>
 
 / {
+    // Keyboard Status display (&kb_status, Keyboard_Control_Layer). Each half
+    // reads this node and draws on its own LEDs: both halves show their own
+    // battery on the row below the number row, and the left (central) half also
+    // shows BLE profiles 1-5 on the number-row 1-5 keys and USB on the = key.
+    // Indices are WS2812 chain positions for the standard layout (41 LEDs per
+    // half, mirrored on the right), listed pinky -> centre.
+    underglow_indicators: underglow-indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = < 34 28 22 16 10 4 >;
+        bt-profiles = < 27 21 15 9 3 >;
+        usb = < 33 >;
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -39,7 +52,13 @@
         Keyboard_Control_Layer {
             bindings = <
 &trans       &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &trans
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4            &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+#ifdef RGB_STATUS
+    &kb_status          /* battery + output status on the underglow for a few seconds */
+#else
+    &trans              /* &kb_status is a Cyboard ZMK extension (zmk-private) */
+#endif
+                                                                                    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &trans           &trans           &trans
 &sys_reset   &trans        &trans        &trans        &trans        &studio_unlock          &rgb_ug RGB_TOG  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI  &rgb_ug RGB_SPI  &sys_reset
 &bootloader  &trans        &trans        &trans        &trans        &trans                  &trans  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD  &rgb_ug RGB_SPD  &bootloader
 &to 4        &trans        &trans        &trans        &trans        &trans                  &trans  &trans           &trans           &trans           &trans           &to 4
