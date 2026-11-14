@@ -738,3 +738,93 @@
         };
     };
 };
+
+// Keyboard Status LED maps, one per physical layout (issue zmk-private#72).
+// Each map is a `status_indicators` child of its zmk,physical-layout node — a
+// child with the zmk,underglow-indicators compatible rather than a property on
+// the layout, so the shield still builds against stock ZMK (its
+// zmk,physical-layout binding would reject an unknown property). The Keyboard
+// Status behavior (&kb_status) draws the map of the *selected* layout, so the
+// lit keys track the Studio cut. Both halves read the same map: every half
+// draws its own battery bar, and the central also draws the bt-profiles + usb
+// output row. The right chain is mirror-wired, so the same indices land on the
+// mirror-image keys (hardware-confirmed on the 5-key function-row cut).
+//
+// Indices are the left half's own strip, taken from each cut's vial-qmk
+// keyboards/cyboard/imprint/<layout>/info.json rgb_matrix:
+//   usb         - the output row's outer key (USB output)
+//   bt-profiles - that row's next five keys, BLE profile 0..4
+//   battery     - the row below (function/number cuts) or the home row
+//                 (letters-only cuts), pinky-side LED first
+&physical_layout_imprint_function_row_full_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <34 28 22 16 10 4>;
+        bt-profiles = <27 21 15 9 3>;
+        usb = <33>;
+    };
+};
+&physical_layout_imprint_function_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <31 26 21 15 9 4>;
+        bt-profiles = <25 20 14 8 3>;
+        usb = <30>;
+    };
+};
+&physical_layout_imprint_function_row_no_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <29 24 19 14 9 4>;
+        bt-profiles = <23 18 13 8 3>;
+        usb = <28>;
+    };
+};
+&physical_layout_imprint_number_row_full_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <28 23 18 13 8 3>;
+        bt-profiles = <22 17 12 7 2>;
+        usb = <27>;
+    };
+};
+&physical_layout_imprint_number_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <25 21 17 12 7 3>;
+        bt-profiles = <20 16 11 6 2>;
+        usb = <24>;
+    };
+};
+&physical_layout_imprint_number_row_no_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <23 19 15 11 7 3>;
+        bt-profiles = <18 14 10 6 2>;
+        usb = <22>;
+    };
+};
+&physical_layout_imprint_letters_only_full_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <19 15 11 7 3 0>;
+        bt-profiles = <18 14 10 6 2>;
+        usb = <22>;
+    };
+};
+&physical_layout_imprint_letters_only {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <17 14 10 6 3 0>;
+        bt-profiles = <16 13 9 5 2>;
+        usb = <19>;
+    };
+};
+&physical_layout_imprint_letters_only_no_bottom_row {
+    status_indicators {
+        compatible = "zmk,underglow-indicators";
+        battery = <15 12 9 6 3 0>;
+        bt-profiles = <14 11 8 5 2>;
+        usb = <17>;
+    };
+};
