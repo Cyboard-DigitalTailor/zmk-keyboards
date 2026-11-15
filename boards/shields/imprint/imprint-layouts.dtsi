@@ -828,3 +828,8 @@
         usb = <17>;
     };
 };
+
+// Per-key RGB LED maps (key position -> LED index), one per physical layout,
+// generated from QMK rgb_matrix.layout. See scripts/gen_imprint_per_key_leds.py
+// and cyboard-wiki projects/studio-rgb-control.md (zmk-private#54).
+#include "imprint-per-key-leds.dtsi"
