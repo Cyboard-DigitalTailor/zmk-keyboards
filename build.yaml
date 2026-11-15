@@ -36,8 +36,12 @@ include:
   # dactyl_right the peripheral. Dongle mode: dactyl_dongle is the central and
   # both halves are peripherals — dactyl_right is already a peripheral, and
   # dactyl_left is rebuilt with ZMK_SPLIT_ROLE_CENTRAL=n (dactyl_left-peripheral).
+  # dactyl_left (central) carries ZMK Studio, like imprint_left, so Studio can
+  # render the layout and edit the keymap over USB.
   - board: assimilator-bt
     shield: dactyl_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: assimilator-bt
     shield: dactyl_right
   - board: assimilator-bt
