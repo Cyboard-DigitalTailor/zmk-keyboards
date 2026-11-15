@@ -57,7 +57,11 @@
         spi-max-frequency = <4000000>;
 
         /* WS2812 */
-        chain-length = <150>; /* arbitrary; change at will */
+        /* Real max: 127 LEDs/side (flagship 5-key function-row cut), from QMK
+         * rgb_matrix split_count -- see scripts/gen_imprint_per_key_leds.py.
+         * One firmware serves every cut via runtime physical-layout selection,
+         * so the buffer must fit the largest. Was 150 ("arbitrary"). */
+        chain-length = <127>;
         spi-one-frame = <0x70>;
         spi-zero-frame = <0x40>;
 
