@@ -36,24 +36,6 @@ config PMW3610_REPORT_INTERVAL_MIN
 
 endif
 
-# Save settings changed at runtime (Studio lighting, sleep and trackball
-# settings, BT profile changes) about a second after the last change instead
-# of ZMK's 60 s default, so a change made just before a reboot or unplug is
-# not lost. Settings live in an 8-sector NVS partition on the nRF52840, which
-# rotates writes across sectors; at roughly 10,000 erase cycles per sector,
-# even thousands of changes a day stay far inside the flash's lifetime. One
-# second still merges a burst of slider updates into a single write.
-#
-# Covers the dongle too: it is the BLE+USB central that stores the BT
-# bonds/endpoints and is the device most often physically unplugged, so the
-# "not lost on reboot or unplug" goal applies to it most of all.
-if SHIELD_IMPRINT_LEFT || SHIELD_IMPRINT_RIGHT || SHIELD_IMPRINT_DONGLE
-
-config ZMK_SETTINGS_SAVE_DEBOUNCE
-    default 1000
-
-endif
-
 config ZMK_RGB_UNDERGLOW
     default y
     imply WS2812_STRIP
