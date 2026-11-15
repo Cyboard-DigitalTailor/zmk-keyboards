@@ -40,6 +40,24 @@
         num-layer-index = < 1 >; // Numbers layer
         num-layer-toggle-key = < 12 >; // tog 1 key (pulses)
         num-layer-keys = < 5 4 3 2 1 6 7 8 9 10 >; // N1-N0 keys (solid)
+
+        // Reactive typing effect (toggled by RGB_REACTIVE, below). One LED per
+        // keymap position: index N is the LED that flashes when position N is
+        // pressed. This is the "LED Locations" grid above in keymap order
+        // (positions 0..35, top-left to bottom-right) — the strip is wired in a
+        // serpentine, so even rows run right-to-left.
+        reactive-key-leds = <
+             5  4  3  2  1  0
+             6  7  8  9 10 11
+            17 16 15 14 13 12
+            18 19 20 21 22 23
+            29 28 27 26 25 24
+            30 31 32 33 34 35
+        >;
+        // Hide the breathe/spectrum/swirl animations: the effect cycle
+        // (RGB_EFF/RGB_EFR) only lands on solid, so they can't be triggered by
+        // accident. Solid + the reactive effect are the two Speller modes.
+        disable-animations;
     };
 
 macros {
@@ -108,7 +126,17 @@ macros {
 #endif
  &trans  &trans  &trans  &trans  &trans  &trans
  &trans  &trans  &trans  &trans  &trans  &trans
+/* Effect cycling (RGB_EFF/EFR) and speed (RGB_SPI/SPD) only affected the
+ * now-hidden animations, so the top-right key toggles the reactive typing
+ * mode instead (RGB_REACTIVE, a zmk-private@speller extension; against
+ * upstream ZMK it falls back to a plain effect cycle). Pair it with the
+ * backlight off (RGB_TOG) for the low-power "flash the key you press"
+ * learning mode. */
+#ifdef RGB_REACTIVE
+ &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_REACTIVE
+#else
  &trans  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_BRI &rgb_ug RGB_SPI &rgb_ug RGB_EFF
+#endif
  &rgb_ug RGB_TOG  &rgb_ug RGB_HUD  &rgb_ug RGB_SAD  &rgb_ug RGB_BRD &rgb_ug RGB_SPD &rgb_ug RGB_EFR
             >;
         };
