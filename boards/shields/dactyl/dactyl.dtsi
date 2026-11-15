@@ -1,10 +1,17 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/gpio/gpio.h>
+#include <physical_layouts.dtsi>
 
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix-transform = &dactyl_manuform_letters_only;
+        // ZMK Studio renders the keyboard from the chosen zmk,physical-layout
+        // (below), which carries its own transform + kscan. A user config that
+        // still selects its variant the pre-Studio way, via
+        // `chosen { zmk,matrix-transform = ... }`, overrides this and makes ZMK
+        // fall back to a synthetic layout from that transform — the
+        // dactyl_manuform_letters_only transform node is kept for that case.
+        zmk,physical-layout = &physical_layout_dactyl_manuform_letters_only;
     };
 
     // Dactyl Manuform, "letters only" variant: 3x6 letter block + 4-key
@@ -31,6 +38,105 @@ RC(1,5) RC(1,4) RC(1,3) RC(1,2)                                                 
         >;
     };
 
+    // ZMK Studio physical layout: the single fixed shape of this board, so
+    // Studio renders the Dactyl Manuform letters-only outline. Unlike the
+    // imprint flex-PCB shield (nine switchable layouts + a cross-layout
+    // position map), a Dactyl is one physical shape, so there is exactly one
+    // layout here and no position map or thumb-fallback ghosting to worry
+    // about. Key order matches the transform above 1:1 (key position = order).
+    //
+    // Coordinates are the wired board's own key positions from vial-qmk
+    // keyboards/cyboard/dactyl/manuform_letters_only/info.json (rgb_matrix),
+    // scaled so one column (~17 units) ~= 100 (1u). The render is a 2-D
+    // approximation of a 3-D board — enough for Studio to show the right
+    // shape and let users see which key they are editing.
+    physical_layout_dactyl_manuform_letters_only: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Dactyl Manuform (Letters Only)";
+        kscan = <&kscan0>;
+        transform = <&dactyl_manuform_letters_only>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0  124       0     0     0>
+            , <&key_physical_attrs 100 100  100  124       0     0     0>
+            , <&key_physical_attrs 100 100  200  124       0     0     0>
+            , <&key_physical_attrs 100 100  306  124       0     0     0>
+            , <&key_physical_attrs 100 100  406  124       0     0     0>
+            , <&key_physical_attrs 100 100  506  124       0     0     0>
+            , <&key_physical_attrs 100 100  812  124       0     0     0>
+            , <&key_physical_attrs 100 100  912  124       0     0     0>
+            , <&key_physical_attrs 100 100 1012  124       0     0     0>
+            , <&key_physical_attrs 100 100 1118  124       0     0     0>
+            , <&key_physical_attrs 100 100 1218  124       0     0     0>
+            , <&key_physical_attrs 100 100 1318  124       0     0     0>
+            , <&key_physical_attrs 100 100    0  188       0     0     0>
+            , <&key_physical_attrs 100 100  100  188       0     0     0>
+            , <&key_physical_attrs 100 100  200  188       0     0     0>
+            , <&key_physical_attrs 100 100  306  188       0     0     0>
+            , <&key_physical_attrs 100 100  406  188       0     0     0>
+            , <&key_physical_attrs 100 100  506  188       0     0     0>
+            , <&key_physical_attrs 100 100  812  188       0     0     0>
+            , <&key_physical_attrs 100 100  912  188       0     0     0>
+            , <&key_physical_attrs 100 100 1012  188       0     0     0>
+            , <&key_physical_attrs 100 100 1118  188       0     0     0>
+            , <&key_physical_attrs 100 100 1218  188       0     0     0>
+            , <&key_physical_attrs 100 100 1318  188       0     0     0>
+            , <&key_physical_attrs 100 100    0  253       0     0     0>
+            , <&key_physical_attrs 100 100  100  253       0     0     0>
+            , <&key_physical_attrs 100 100  200  253       0     0     0>
+            , <&key_physical_attrs 100 100  306  253       0     0     0>
+            , <&key_physical_attrs 100 100  406  253       0     0     0>
+            , <&key_physical_attrs 100 100  506  253       0     0     0>
+            , <&key_physical_attrs 100 100  812  253       0     0     0>
+            , <&key_physical_attrs 100 100  912  253       0     0     0>
+            , <&key_physical_attrs 100 100 1012  253       0     0     0>
+            , <&key_physical_attrs 100 100 1118  253       0     0     0>
+            , <&key_physical_attrs 100 100 1218  253       0     0     0>
+            , <&key_physical_attrs 100 100 1318  253       0     0     0>
+            , <&key_physical_attrs 100 100    0  312       0     0     0>
+            , <&key_physical_attrs 100 100  100  312       0     0     0>
+            , <&key_physical_attrs 100 100  200  312       0     0     0>
+            , <&key_physical_attrs 100 100  306  312       0     0     0>
+            , <&key_physical_attrs 100 100 1012  312       0     0     0>
+            , <&key_physical_attrs 100 100 1118  312       0     0     0>
+            , <&key_physical_attrs 100 100 1218  312       0     0     0>
+            , <&key_physical_attrs 100 100 1318  312       0     0     0>
+            , <&key_physical_attrs 100 100  506  312       0     0     0>
+            , <&key_physical_attrs 100 100  606  312       0     0     0>
+            , <&key_physical_attrs 100 100  606  376       0     0     0>
+            , <&key_physical_attrs 100 100  712  376       0     0     0>
+            , <&key_physical_attrs 100 100  712  312       0     0     0>
+            , <&key_physical_attrs 100 100  812  312       0     0     0>
+            , <&key_physical_attrs 100 100  406  312       0     0     0>
+            , <&key_physical_attrs 100 100  406  376       0     0     0>
+            , <&key_physical_attrs 100 100  506  376       0     0     0>
+            , <&key_physical_attrs 100 100  912  312       0     0     0>
+            , <&key_physical_attrs 100 100  912  376       0     0     0>
+            , <&key_physical_attrs 100 100  812  376       0     0     0>
+            ;
+
+        // Keyboard Status LED map (issue zmk-private#72), as a child node with
+        // the zmk,underglow-indicators compatible rather than a property on the
+        // layout, so the shield still builds against stock ZMK. The Keyboard
+        // Status behavior (&kb_status) draws the map of the selected layout.
+        // Indices are the left half's own ws2812 chain, taken from the wired
+        // board's vial-qmk rgb_matrix (manuform_letters_only/info.json), same
+        // chain the assimilator-bt drives:
+        //   usb         - top row outer (pinky) key, the USB-output indicator
+        //   bt-profiles - the rest of the top row, BLE profile 0..4
+        //   battery     - the home row, pinky-side LED first
+        // Mirror-wired right chain lands the same indices on the mirror keys.
+        // NOTE: hardware-confirm the chain direction on a real board (as the
+        // imprint maps were), then correct here if the strip counts the other
+        // way.
+        status_indicators {
+            compatible = "zmk,underglow-indicators";
+            battery = <18 14 10 6 3 0>;
+            bt-profiles = <17 13 9 5 2>;
+            usb = <21>;
+        };
+    };
+
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
@@ -48,5 +154,15 @@ RC(1,5) RC(1,4) RC(1,3) RC(1,2)                                                 
             , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // col6 from schematic
             , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // col7 from schematic
             ;
+    };
+
+    // Unlock ZMK Studio by holding the A- and F-position keys (left home row,
+    // matrix row 3) for 3 seconds. Matrix coordinates, unlike key positions,
+    // are identical across any keymap the user builds, so this works no matter
+    // what they have remapped. Mirrors the imprint shield's unlock combo.
+    studio_unlock_combo {
+        compatible = "zmk,studio-unlock-combo";
+        keys = <RC(3,4) RC(3,1)>;
+        hold-time-ms = <3000>;
     };
 };
