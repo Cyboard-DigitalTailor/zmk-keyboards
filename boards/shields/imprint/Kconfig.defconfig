@@ -78,7 +78,14 @@ config ZMK_RGB_UNDERGLOW_HUE_START
 # AND, in dongle mode, as a forced peripheral (-DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n,
 # artifact dactyl_left-peripheral) from the same shield. The role check keeps
 # these off for every peripheral/dongle-half build.
-if ZMK_SPLIT_ROLE_CENTRAL
+#
+# Also gate on ZMK_SPLIT_BLE: these symbols only exist under a BLE split
+# (app/src/split/bluetooth/Kconfig, `if ZMK_SPLIT && ZMK_SPLIT_BLE`). On a
+# wired (non-BLE) central this defconfig would otherwise re-define them as
+# promptless `default y` symbols that can't be turned off, and central.c would
+# link against a battery event whose impl is not compiled without BLE. The
+# BLE boards in this module are unaffected (ZMK_SPLIT_BLE=y there).
+if ZMK_SPLIT_ROLE_CENTRAL && ZMK_SPLIT_BLE
 
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
     default y
@@ -86,4 +93,4 @@ config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
 config ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY
     default y
 
-endif # ZMK_SPLIT_ROLE_CENTRAL
+endif # ZMK_SPLIT_ROLE_CENTRAL && ZMK_SPLIT_BLE

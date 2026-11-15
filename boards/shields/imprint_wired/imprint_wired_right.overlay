@@ -1,0 +1,6 @@
+/*
+ * Wired Imprint, right half — the wired-split peripheral
+ * (ZMK_SPLIT_ROLE_CENTRAL defaults n). Same RP2040 PCB as the left half, so it
+ * reuses the shared matrix and split wiring.
+ */
+#include "imprint_wired.dtsi"
