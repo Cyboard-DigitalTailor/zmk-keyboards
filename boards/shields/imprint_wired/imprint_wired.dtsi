@@ -24,10 +24,10 @@
     chosen {
         zmk,kscan = &kscan0;
         zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row;
-        // Kept for user configs that still select their variant the pre-Studio
-        // way (chosen zmk,matrix-transform). Harmless while the physical
-        // layout above is in use.
-        zmk,matrix-transform = &imprint_function_row_full_bottom_row;
+        // Note: do NOT add a chosen zmk,matrix-transform here. ZMK Studio
+        // requires physical layouts and asserts that no matrix-transform is
+        // chosen (app/src/physical_layouts.c USE_PHY_LAYOUTS). The transform
+        // is still used — the physical-layout node references it directly.
     };
 
     physical_layout_imprint_function_row_full_bottom_row: physical_layout_0 {

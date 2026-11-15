@@ -21,8 +21,9 @@ if SHIELD_IMPRINT_WIRED_LEFT || SHIELD_IMPRINT_WIRED_RIGHT
 config ZMK_SPLIT
     default y
 
-config ZMK_SLEEP
-    default y
+# No ZMK_SLEEP: this is a USB-powered wired board with no battery, and ZMK's
+# deep sleep pulls in sys_poweroff / device PM that the RP2040 target does not
+# provide (undefined references at link time).
 
 # Save Studio/keymap changes ~1 s after the last edit instead of ZMK's 60 s
 # default, matching the wireless Imprint, so a change made just before an
