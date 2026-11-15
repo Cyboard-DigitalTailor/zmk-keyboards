@@ -1,0 +1,210 @@
+/*
+ * Shared devicetree for the wired (RP2040, USB) Imprint — spike cut:
+ * function row, 5-key bottom row. See
+ * cyboard-wiki/projects/wired-zmk-migration.md.
+ *
+ * Reuses the Imprint geometry from the wireless shield verbatim: the
+ * matrix-transform and the physical-layout node are byte-for-byte
+ * imprint_function_row_full_bottom_row / physical_layout_0 from
+ * boards/shields/imprint, so key positions (and ZMK Studio's key grid) are
+ * shared across the wired and wireless Imprint. This shield supplies the
+ * RP2040 electrical layer: kscan GPIOs from the wired board's own schematic,
+ * and the two halves joined over ZMK's upstream wired split (zmk,wired-split)
+ * rather than BLE.
+ *
+ * Trackball (PMW3360) and RGB underglow (WS2812 over RP2040 PIO) are stubbed
+ * for the spike and tracked as their own phases in the migration doc.
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <physical_layouts.dtsi>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout_imprint_function_row_full_bottom_row;
+        // Kept for user configs that still select their variant the pre-Studio
+        // way (chosen zmk,matrix-transform). Harmless while the physical
+        // layout above is in use.
+        zmk,matrix-transform = &imprint_function_row_full_bottom_row;
+    };
+
+    physical_layout_imprint_function_row_full_bottom_row: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Imprint Function Row (5-Key Bottom Row)";
+        kscan = <&kscan0>;
+        transform = <&imprint_function_row_full_bottom_row>;
+
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0  125       0     0     0>
+            , <&key_physical_attrs 100 100  100  125       0     0     0>
+            , <&key_physical_attrs 100 100  200   50       0     0     0>
+            , <&key_physical_attrs 100 100  300    0       0     0     0>
+            , <&key_physical_attrs 100 100  400   25       0     0     0>
+            , <&key_physical_attrs 100 100  500   25       0     0     0>
+            , <&key_physical_attrs 100 100 1150   25       0     0     0>
+            , <&key_physical_attrs 100 100 1250   25       0     0     0>
+            , <&key_physical_attrs 100 100 1350    0       0     0     0>
+            , <&key_physical_attrs 100 100 1450   50       0     0     0>
+            , <&key_physical_attrs 100 100 1550  125       0     0     0>
+            , <&key_physical_attrs 100 100 1650  125       0     0     0>
+            , <&key_physical_attrs 100 100    0  225       0     0     0>
+            , <&key_physical_attrs 100 100  100  225       0     0     0>
+            , <&key_physical_attrs 100 100  200  150       0     0     0>
+            , <&key_physical_attrs 100 100  300  100       0     0     0>
+            , <&key_physical_attrs 100 100  400  125       0     0     0>
+            , <&key_physical_attrs 100 100  500  125       0     0     0>
+            , <&key_physical_attrs 100 100 1150  125       0     0     0>
+            , <&key_physical_attrs 100 100 1250  125       0     0     0>
+            , <&key_physical_attrs 100 100 1350  100       0     0     0>
+            , <&key_physical_attrs 100 100 1450  150       0     0     0>
+            , <&key_physical_attrs 100 100 1550  225       0     0     0>
+            , <&key_physical_attrs 100 100 1650  225       0     0     0>
+            , <&key_physical_attrs 100 100    0  325       0     0     0>
+            , <&key_physical_attrs 100 100  100  325       0     0     0>
+            , <&key_physical_attrs 100 100  200  250       0     0     0>
+            , <&key_physical_attrs 100 100  300  200       0     0     0>
+            , <&key_physical_attrs 100 100  400  225       0     0     0>
+            , <&key_physical_attrs 100 100  500  225       0     0     0>
+            , <&key_physical_attrs 100 100 1150  225       0     0     0>
+            , <&key_physical_attrs 100 100 1250  225       0     0     0>
+            , <&key_physical_attrs 100 100 1350  200       0     0     0>
+            , <&key_physical_attrs 100 100 1450  250       0     0     0>
+            , <&key_physical_attrs 100 100 1550  325       0     0     0>
+            , <&key_physical_attrs 100 100 1650  325       0     0     0>
+            , <&key_physical_attrs 100 100    0  425       0     0     0>
+            , <&key_physical_attrs 100 100  100  425       0     0     0>
+            , <&key_physical_attrs 100 100  200  350       0     0     0>
+            , <&key_physical_attrs 100 100  300  300       0     0     0>
+            , <&key_physical_attrs 100 100  400  325       0     0     0>
+            , <&key_physical_attrs 100 100  500  325       0     0     0>
+            , <&key_physical_attrs 100 100 1150  325       0     0     0>
+            , <&key_physical_attrs 100 100 1250  325       0     0     0>
+            , <&key_physical_attrs 100 100 1350  300       0     0     0>
+            , <&key_physical_attrs 100 100 1450  350       0     0     0>
+            , <&key_physical_attrs 100 100 1550  425       0     0     0>
+            , <&key_physical_attrs 100 100 1650  425       0     0     0>
+            , <&key_physical_attrs 100 100    0  525       0     0     0>
+            , <&key_physical_attrs 100 100  100  525       0     0     0>
+            , <&key_physical_attrs 100 100  200  450       0     0     0>
+            , <&key_physical_attrs 100 100  300  400       0     0     0>
+            , <&key_physical_attrs 100 100  400  425       0     0     0>
+            , <&key_physical_attrs 100 100  500  425       0     0     0>
+            , <&key_physical_attrs 100 100 1150  425       0     0     0>
+            , <&key_physical_attrs 100 100 1250  425       0     0     0>
+            , <&key_physical_attrs 100 100 1350  400       0     0     0>
+            , <&key_physical_attrs 100 100 1450  450       0     0     0>
+            , <&key_physical_attrs 100 100 1550  525       0     0     0>
+            , <&key_physical_attrs 100 100 1650  525       0     0     0>
+            , <&key_physical_attrs 100 100    0  625       0     0     0>
+            , <&key_physical_attrs 100 100  100  625       0     0     0>
+            , <&key_physical_attrs 100 100  200  550       0     0     0>
+            , <&key_physical_attrs 100 100  300  500       0     0     0>
+            , <&key_physical_attrs 100 100  400  525       0     0     0>
+            , <&key_physical_attrs 100 100 1250  525       0     0     0>
+            , <&key_physical_attrs 100 100 1350  500       0     0     0>
+            , <&key_physical_attrs 100 100 1450  550       0     0     0>
+            , <&key_physical_attrs 100 100 1550  625       0     0     0>
+            , <&key_physical_attrs 100 100 1650  625       0     0     0>
+            , <&key_physical_attrs 100 100  550  575       0     0     0>
+            , <&key_physical_attrs 100 100  550  575     800   600  1340>
+            , <&key_physical_attrs 100 100  550  575    1600   600  1340>
+            , <&key_physical_attrs 100 100 1100  575 (-1600)  1150  1340>
+            , <&key_physical_attrs 100 100 1100  575  (-800)  1150  1340>
+            , <&key_physical_attrs 100 100 1100  575       0     0     0>
+            , <&key_physical_attrs 100 100  550  675       0     0     0>
+            , <&key_physical_attrs 100 100  550  675     800   600  1440>
+            , <&key_physical_attrs 100 100  550  675    1600   600  1440>
+            , <&key_physical_attrs 100 100 1100  675 (-1600)  1150  1440>
+            , <&key_physical_attrs 100 100 1100  675  (-800)  1150  1440>
+            , <&key_physical_attrs 100 100 1100  675       0     0     0>
+            ;
+    };
+
+    /*
+     * Imprint "function row, 5-key bottom row" transform (8 cols x 14 rows:
+     * 7 physical rows per half). Rows 0-6 are this half; the split peripheral
+     * reports rows 7-13. Byte-for-byte the wireless shield's transform of the
+     * same name.
+     */
+    imprint_function_row_full_bottom_row: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <8>;
+        rows = <14>;
+        map = <
+RC(6,5) RC(6,4) RC(6,3) RC(6,2) RC(6,1) RC(6,0)                           RC(13,0) RC(13,1) RC(13,2) RC(13,3) RC(13,4) RC(13,5)
+RC(5,5) RC(5,4) RC(5,3) RC(5,2) RC(5,1) RC(5,0)                           RC(12,0) RC(12,1) RC(12,2) RC(12,3) RC(12,4) RC(12,5)
+RC(4,5) RC(4,4) RC(4,3) RC(4,2) RC(4,1) RC(4,0)                           RC(11,0) RC(11,1) RC(11,2) RC(11,3) RC(11,4) RC(11,5)
+RC(3,5) RC(3,4) RC(3,3) RC(3,2) RC(3,1) RC(3,0)                           RC(10,0) RC(10,1) RC(10,2) RC(10,3) RC(10,4) RC(10,5)
+RC(2,5) RC(2,4) RC(2,3) RC(2,2) RC(2,1) RC(2,0)                           RC(9,0)  RC(9,1)  RC(9,2)  RC(9,3)  RC(9,4)  RC(9,5)
+RC(1,5) RC(1,4) RC(1,3) RC(1,2) RC(1,1)                                            RC(8,1)  RC(8,2)  RC(8,3)  RC(8,4)  RC(8,5)
+                                    RC(0,3) RC(0,2) RC(0,1)   RC(7,1) RC(7,2) RC(7,3)
+                                    RC(0,7) RC(0,6) RC(0,5)   RC(7,5) RC(7,6) RC(7,7)
+        >;
+    };
+
+    /*
+     * Matrix. Row/col GPIOs are the wired Imprint's own pinout
+     * (vial-qmk keyboards/cyboard/info.json): rows GP2,GP3,GP8,GP4,GP13,GP9,
+     * GP14; cols GP1,GP10,GP11,GP12,GP7,GP6,GP5,GP19; ROW2COL. RP2040 exposes
+     * a single GPIO bank, so each GPn maps to <&gpio0 n>. The exact
+     * row/col-to-RC() correspondence must still be bench-verified against the
+     * schematic (compile-correct != wiring-correct).
+     */
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        label = "KSCAN";
+        wakeup-source;
+        diode-direction = "row2col";
+
+        col-gpios
+            = <&gpio0 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col0 GP1
+            , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col1 GP10
+            , <&gpio0 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col2 GP11
+            , <&gpio0 12 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col3 GP12
+            , <&gpio0 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col4 GP7
+            , <&gpio0 6  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col5 GP6
+            , <&gpio0 5  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col6 GP5
+            , <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // col7 GP19
+            ;
+
+        row-gpios
+            = <&gpio0 2  GPIO_ACTIVE_HIGH>  // row0 GP2
+            , <&gpio0 3  GPIO_ACTIVE_HIGH>  // row1 GP3
+            , <&gpio0 8  GPIO_ACTIVE_HIGH>  // row2 GP8
+            , <&gpio0 4  GPIO_ACTIVE_HIGH>  // row3 GP4
+            , <&gpio0 13 GPIO_ACTIVE_HIGH>  // row4 GP13
+            , <&gpio0 9  GPIO_ACTIVE_HIGH>  // row5 GP9
+            , <&gpio0 14 GPIO_ACTIVE_HIGH>  // row6 GP14
+            ;
+    };
+
+    /*
+     * Wired split over a single UART. The wired Imprint uses a single-wire
+     * half-duplex UART on GP28 across the split USB-C connector; this spike
+     * references the board's default &uart0 so it compiles on a stock RP2040
+     * target. The production board remaps this UART's TX to GP28 (pinctrl) and
+     * keeps half-duplex;. Framing/CRC are handled by ZMK's wired split.
+     */
+    wired_split: wired_split {
+        compatible = "zmk,wired-split";
+        device = <&uart0>;
+        half-duplex;
+    };
+
+    /*
+     * Keymap-independent ZMK Studio unlock: hold the A- and F-position keys
+     * (left home row, matrix row 3) for 3 s. Matrix coordinates are identical
+     * across Imprint layouts, so this is stable regardless of the keymap.
+     */
+    studio_unlock_combo {
+        compatible = "zmk,studio-unlock-combo";
+        keys = <RC(3,4) RC(3,1)>;
+        hold-time-ms = <3000>;
+    };
+};
+
+&uart0 {
+    status = "okay";
+};

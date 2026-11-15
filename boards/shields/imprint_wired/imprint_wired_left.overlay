@@ -1,0 +1,7 @@
+/*
+ * Wired Imprint, left half — the wired-split central (USB-attached, talks to
+ * Studio). Role is set in Kconfig.defconfig (ZMK_SPLIT_ROLE_CENTRAL=y). Both
+ * halves are the same RP2040 PCB, so the matrix and split wiring live in the
+ * shared dtsi.
+ */
+#include "imprint_wired.dtsi"

@@ -47,3 +47,16 @@ include:
   - board: assimilator-bt
     shield: dactyl_dongle
     artifact-name: dactyl_dongle_assimilator
+  # Wired (RP2040, USB) Imprint — spike cut (function row, 5-key bottom row).
+  # Built on the stock rpi_pico RP2040 target; a production board def with the
+  # real pinout is a follow-on. Left is the wired-split central and carries
+  # Studio over USB; right is the wired-split peripheral. See
+  # cyboard-wiki/projects/wired-zmk-migration.md.
+  - board: rpi_pico
+    shield: imprint_wired_left
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: imprint_wired_left
+  - board: rpi_pico
+    shield: imprint_wired_right
+    artifact-name: imprint_wired_right
